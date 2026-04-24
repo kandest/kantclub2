@@ -35,7 +35,7 @@
       --radius-lg: 22px;
       --radius-md: 16px;
 
-      --maxw: 460px;
+      --maxw: 100%;
 
       --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.24);
       --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.2);
@@ -50,6 +50,8 @@
     html, body {
       margin: 0;
       padding: 0;
+      width: 100%;
+      height: 100%;
       color: var(--text);
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.4;
@@ -92,9 +94,11 @@
     .app {
       position: relative;
       z-index: 1;
-      max-width: var(--maxw);
-      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
       padding: 18px 16px 40px;
+      min-height: 100vh;
     }
 
     .section {
