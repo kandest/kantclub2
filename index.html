@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
+  <meta name="theme-color" content="#07101f" />
+  <title>KantClub</title>
+
+  <style>
+    :root {
+      --bg: #06101f;
+      --bg-2: #0a1730;
+      --surface: rgba(12, 20, 38, 0.82);
+      --surface-2: rgba(16, 28, 54, 0.78);
+      --surface-3: rgba(20, 34, 66, 0.9);
+
+      --border: rgba(145, 186, 255, 0.14);
+      --border-strong: rgba(145, 186, 255, 0.24);
+
+      --text: #f5f8ff;
+      --muted: rgba(228, 236, 255, 0.74);
+      --muted-2: rgba(228, 236, 255, 0.46);
+
+      --accent-1: #e5f3ff;
+      --accent-2: #9dd2ff;
+      --accent-3: #69b0ff;
+      --accent-4: #4e8fff;
+
+      --button-text: #08111f;
+
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+
+      --maxw: 460px;
+
+      --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.24);
+      --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.2);
+      --shadow-sm: 0 10px 26px rgba(0, 0, 0, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.4;
+      background: #050913;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background:
+        radial-gradient(1100px 700px at 10% -10%, rgba(88, 151, 255, 0.24), transparent 56%),
+        radial-gradient(820px 520px at 100% 0%, rgba(58, 104, 255, 0.18), transparent 52%),
+        radial-gradient(620px 380px at 50% 14%, rgba(122, 184, 255, 0.08), transparent 62%),
+        linear-gradient(180deg, #081322 0%, #050913 100%);
+      transform: translateZ(0);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03), transparent 34%);
+      mix-blend-mode: screen;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 18px 16px 40px;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b8d8ff;
+    }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: 17px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .section-desc {
+      margin: 0 0 14px;
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--muted);
+    }
+
+    .hero {
+      position: relative;
+      padding: 10px 2px 4px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -42px;
+      left: -18px;
+      right: -18px;
+      height: 240px;
+      background: radial-gradient(circle at 30% 20%, rgba(108, 173, 255, 0.18), transparent 62%);
+      filter: blur(16px);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #bddbff;
+      letter-spacing: 0.01em;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #e6f3ff 0%, #8fc8ff 100%);
+      box-shadow: 0 0 14px rgba(113, 176, 255, 0.8);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 360px;
+      font-size: 36px;
+      line-height: 1.01;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+      color: #f7fbff;
+    }
+
+    .hero-sub {
+      margin: 14px 0 0;
+      max-width: 390px;
+      font-size: 14px;
+      line-height: 1.64;
+      color: var(--muted);
+    }
+
+    .hero-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hero-stack-item {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(145, 186, 255, 0.12);
+      color: #dcecff;
+      font-size: 13px;
+      font-weight: 500;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      padding: 14px 15px;
+      border-radius: 18px;
+      border: 1px solid rgba(145, 186, 255, 0.12);
+      background:
+        linear-gradient(180deg, rgba(18, 31, 58, 0.72) 0%, rgba(10, 18, 34, 0.78) 100%);
+      box-shadow:
+        var(--shadow-sm),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .hero-note-title {
+      margin-bottom: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .hero-note-text {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(14, 23, 43, 0.84) 0%, rgba(8, 14, 27, 0.9) 100%);
+      box-shadow:
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(145, 186, 255, 0.12);
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn-primary {
+      border: 0;
+      color: var(--button-text);
+      background:
+        linear-gradient(135deg, #e4f2ff 0%, #9ad0ff 44%, #67afff 100%);
+      box-shadow:
+        0 8px 24px rgba(92, 160, 255, 0.28),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .pain-list,
+    .faq-list,
+    .how-list,
+    .inside-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .pain-item,
+    .faq-item,
+    .inside-item {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(145, 186, 255, 0.1);
+      background:
+        linear-gradient(180deg, rgba(18, 31, 58, 0.72) 0%, rgba(10, 18, 34, 0.78) 100%);
+      padding: 14px;
+    }
+
+    .pain-title,
+    .faq-title,
+    .inside-title {
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #f4f8ff;
+    }
+
+    .pain-text,
+    .faq-text,
+    .inside-text {
+      font-size: 13px;
+      line-height: 1.58;
+      color: var(--muted);
+    }
+
+    .tariffs {
+      display: grid;
+      gap: 12px;
+    }
+
+    .tariff {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(15, 24, 46, 0.84) 0%, rgba(8, 14, 27, 0.9) 100%);
+      box-shadow:
+        var(--shadow-md),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 18px;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .tariff:active {
+      transform: scale(0.995);
+    }
+
+    .tariff::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 45%);
+    }
+
+    .tariff.featured {
+      transform: translateY(-2px);
+      border-color: var(--border-strong);
+      background:
+        radial-gradient(520px 240px at 100% 0%, rgba(94, 164, 255, 0.18), transparent 55%),
+        linear-gradient(180deg, rgba(20, 34, 65, 0.92) 0%, rgba(9, 18, 35, 0.95) 100%);
+      box-shadow:
+        0 18px 48px rgba(25, 77, 177, 0.18),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .tariff.featured::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(180,220,255,0.35), rgba(96,146,255,0.08));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .tariff-label {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 600;
+      color: #bddbff;
+      letter-spacing: 0.01em;
+    }
+
+    .tariff-title {
+      margin: 0 0 8px;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .tariff.featured .tariff-title {
+      font-size: 28px;
+    }
+
+    .tariff-sub {
+      margin: 0 0 16px;
+      max-width: 300px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .price {
+      margin: 0 0 16px;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+      color: #f7fbff;
+    }
+
+    .tariff.featured .price {
+      font-size: 36px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .list-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      min-width: 5px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #d8ebff 0%, #7dbfff 100%);
+      margin-top: 7px;
+      box-shadow: 0 0 10px rgba(111, 175, 255, 0.55);
+    }
+
+    .special-card {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(540px 220px at 100% 0%, rgba(102, 168, 255, 0.16), transparent 56%),
+        linear-gradient(180deg, rgba(18, 30, 58, 0.88) 0%, rgba(8, 14, 27, 0.92) 100%);
+      border-color: rgba(145, 186, 255, 0.16);
+    }
+
+    .special-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(145, 186, 255, 0.14);
+      font-size: 11px;
+      font-weight: 600;
+      color: #d9ebff;
+      letter-spacing: 0.01em;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding-top: 12px;
+      border-top: 1px solid rgba(145, 186, 255, 0.1);
+    }
+
+    .step:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(145, 186, 255, 0.14);
+      color: #dff0ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .step-content {
+      min-width: 0;
+    }
+
+    .how-item {
+      padding-top: 10px;
+      border-top: 1px solid rgba(145, 186, 255, 0.1);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .how-item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .how-item strong {
+      color: #f7fbff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <section class="hero">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Экосистема роста
+      </div>
+
+      <h1>Выберите доступ</h1>
+
+      <p class="hero-sub">
+        KantClub — закрытая система роста для монтажёров:
+        навык, упаковка себя, клиенты, деньги и сильное окружение.
+      </p>
+
+   
+     
+      </p>
+
+      <div class="tariffs">
+        <a href="https://example.com/tribute-1m" class="tariff">
+          <div class="tariff-label">1 месяц</div>
+          <h3 class="tariff-title">Старт</h3>
+          <p class="tariff-sub">
+            Для тех, кто хочет посмотреть всё изнутри и спокойно определить свой главный вектор роста.
+          </p>
+          <div class="price">1490 ₽</div>
+
+          <div class="list">
+            <div class="list-item"><span class="dot"></span><span>Быстрый вход в KantClub</span></div>
+            <div class="list-item"><span class="dot"></span><span>Подходит, чтобы осмотреться без длинного обязательства</span></div>
+            <div class="list-item"><span class="dot"></span><span>Нормальный формат, если хочешь зайти без перегруза</span></div>
+          </div>
+
+          <span class="btn">Выбрать доступ</span>
+        </a>
+
+        <a href="https://example.com/tribute-3m" class="tariff featured">
+          <div class="tariff-label">3 месяца · оптимально</div>
+          <h3 class="tariff-title">Выйти в клиентов</h3>
+          <p class="tariff-sub">
+            Лучший формат, чтобы пройти фундамент, усилить навык и двинуться в клиентов и деньги.
+          </p>
+          <div class="price">3990 ₽</div>
+
+          <div class="list">
+            <div class="list-item"><span class="dot"></span><span>Лучший баланс по времени и вовлечению</span></div>
+            <div class="list-item"><span class="dot"></span><span>Возможность найти свою «Десятку»</span></div>
+            <div class="list-item"><span class="dot"></span><span>Персональные разборы от Kant</span></div>
+          </div>
+
+          <span class="btn btn-primary">Выбрать доступ</span>
+        </a>
+
+        <a href="https://example.com/tribute-1y" class="tariff">
+          <div class="tariff-label">1 год</div>
+          <h3 class="tariff-title">Стать частью среды</h3>
+          <p class="tariff-sub">
+            Для тех, кто хочет идти в долгую и рассматривает монтаж как источник дохода.
+          </p>
+          <div class="price">9990 ₽</div>
+
+          <div class="list">
+            <div class="list-item"><span class="dot"></span><span>Подходит для серьёзного входа в профессию</span></div>
+            <div class="list-item"><span class="dot"></span><span>Спокойный горизонт роста в одной системе</span></div>
+            <div class="list-item"><span class="dot"></span><span>Персональная помощь от лидеров</span></div>
+          </div>
+
+          <span class="btn">Выбрать доступ</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-kicker">Экосистема</div>
+        <h2 class="section-title">Что внутри</h2>
+        <p class="section-desc">
+          Экосистема роста: навык, упаковка себя, клиенты, деньги и среда единомышленников.
+        </p>
+
+        <div class="inside-list">
+          <div class="inside-item">
+            <div class="inside-title">Навык</div>
+            <div class="inside-text">Reels, Motion Design, база программ и другое</div>
+          </div>
+
+          <div class="inside-item">
+            <div class="inside-title">Упаковка себя</div>
+            <div class="inside-text">Профиль, портфолио, позиционирование, подача себя как специалиста</div>
+          </div>
+
+          <div class="inside-item">
+            <div class="inside-title">Клиенты</div>
+            <div class="inside-text">Поиск клиентов, аутрич, первые сообщения, удержание</div>
+          </div>
+
+          <div class="inside-item">
+            <div class="inside-title">Деньги</div>
+            <div class="inside-text">Рост чека, уверенность в продаже себя, развитие дохода</div>
+          </div>
+
+          <div class="inside-item">
+            <div class="inside-title">Нетворкинг</div>
+            <div class="inside-text">Работа в командах под руководством Kant.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card special-card">
+        <div class="special-label">Формат внутри клуба</div>
+        <h2 class="section-title">Нетворкинг «Десятка»</h2>
+        <p class="section-desc">
+          Доступ с тарифа на 3 месяца.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="faq-title">Небольшой формат</div>
+              <div class="faq-text">Группы из 5–10 человек, где все участники находятся на одном уровне.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="faq-title">Общий фокус</div>
+              <div class="faq-text">Общая цель, единый чат, созвоны, помощь и разборы под присмотром Kant.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="faq-title">Лидер</div>
+              <div class="faq-text">В каждой Десятке выбирается лидер, который организовывает созвоны, следит за результатами участников и ведёт отчёты.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="section-kicker">Ответы</div>
+        <h2 class="section-title">Частые вопросы</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-title">Это только про монтаж?</div>
+            <div class="faq-text">
+              Нет. Внутри не только навык, но и упаковка себя, клиенты, продажи, рост дохода и среда, которая помогает расти.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-title">Подойдёт, если я ещё не на сильном уровне?</div>
+            <div class="faq-text">
+              Да. Внутри есть и база, и более сильные направления. Десятка также доступна и для новчиков.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-title">Что будет после оплаты?</div>
+            <div class="faq-text">
+              Оплата идёт через Tribute. После оплаты Tribute сразу выдаст ссылку на вход.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    if (window.Telegram && window.Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand();
+    }
+  </script>
+</body>
+</html>
