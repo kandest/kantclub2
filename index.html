@@ -298,7 +298,7 @@
 
     .price-line {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
       gap: 14px;
       margin-bottom: 14px;
@@ -465,6 +465,8 @@
     .final-title { font-size: 28px; }
     .final-text { margin: 11px auto 16px; max-width: 460px; }
 
+    .sticky-buy-disabled, .sticky-buy { display: none !important; }
+
     .sticky-buy-disabled {
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -513,7 +515,7 @@
       inset: 0;
       z-index: 80;
       display: none;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       padding: 16px;
       background: rgba(3, 6, 13, .68);
@@ -596,6 +598,17 @@
       .band-title-row { grid-template-columns: 1fr; }
       .band-big { font-size: 36px; }
     }
+  
+    .sticky-buy,
+    .sticky-buy-disabled,
+    .sticky-inner,
+    .sticky-title,
+    .sticky-sub,
+    .sticky-btn {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
   </style>
 </head>
 <body>
@@ -640,7 +653,7 @@
       </div>
 
       <div class="tariffs" id="tariffs">
-        <a href="https://example.com/tribute-1m" class="tariff">
+        <a href="https://web.tribute.tg/s/TQh" class="tariff">
           <div class="tariff-row">
             <div class="tariff-label">1 месяц</div>
             <div class="tariff-mini">быстрый вход</div>
@@ -663,7 +676,7 @@
           <span class="btn">Выбрать</span>
         </a>
 
-        <a href="https://example.com/tribute-3m" class="tariff featured">
+        <a href="https://web.tribute.tg/s/TQh" class="tariff featured">
           <div class="tariff-row">
             <div class="tariff-label hot">оптимальный вход</div>
             <div class="tariff-mini">с Потоком</div>
@@ -686,7 +699,7 @@
           <span class="btn btn-primary">Выбрать</span>
         </a>
 
-        <a href="https://example.com/tribute-1y" class="tariff">
+        <a href="https://web.tribute.tg/s/TQh" class="tariff">
           <div class="tariff-row">
             <div class="tariff-label">1 год</div>
             <div class="tariff-mini">в долгую</div>
@@ -909,15 +922,6 @@
     </div>
   </div>
 
-  <div class="sticky-buy">
-    <div class="sticky-inner">
-      <div>
-        <div class="sticky-title">KantClub · доступ открыт</div>
-        <div class="sticky-sub">оптимально — 3 месяца</div>
-      </div>
-      <a href="#tariffs" class="sticky-btn">Выбрать</a>
-    </div>
-  </div>
 
   <script>
     const openModal = (type) => {
