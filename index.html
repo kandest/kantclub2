@@ -2,62 +2,42 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  />
-  <meta name="theme-color" content="#07101f" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#060b14" />
   <title>KantClub</title>
 
   <style>
     :root {
-      --bg: #06101f;
-      --bg-2: #0a1730;
-      --surface: rgba(12, 20, 38, 0.82);
-      --surface-2: rgba(16, 28, 54, 0.78);
-      --surface-3: rgba(20, 34, 66, 0.9);
-
-      --border: rgba(145, 186, 255, 0.14);
-      --border-strong: rgba(145, 186, 255, 0.24);
-
-      --text: #f5f8ff;
-      --muted: rgba(228, 236, 255, 0.74);
-      --muted-2: rgba(228, 236, 255, 0.46);
-
-      --accent-1: #e5f3ff;
-      --accent-2: #9dd2ff;
-      --accent-3: #69b0ff;
-      --accent-4: #4e8fff;
-
-      --button-text: #08111f;
-
-      --radius-xl: 28px;
-      --radius-lg: 22px;
+      --bg: #060b14;
+      --surface: rgba(13, 22, 38, .74);
+      --surface-soft: rgba(255,255,255,.045);
+      --border: rgba(190, 220, 255, .12);
+      --border-soft: rgba(190, 220, 255, .08);
+      --text: #f7faff;
+      --muted: rgba(232,240,255,.72);
+      --muted-2: rgba(232,240,255,.50);
+      --accent: #9fd3ff;
+      --accent-2: #6cb6ff;
+      --warm: #f2d8aa;
+      --radius-xl: 26px;
+      --radius-lg: 20px;
       --radius-md: 16px;
-
-      --maxw: 100%;
-
-      --shadow-lg: 0 18px 48px rgba(0, 0, 0, 0.24);
-      --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.2);
-      --shadow-sm: 0 10px 26px rgba(0, 0, 0, 0.16);
+      --shadow: 0 18px 55px rgba(0,0,0,.28);
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     html, body {
       margin: 0;
-      padding: 0;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       color: var(--text);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.4;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
       background: #050913;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
     }
 
     body::before {
@@ -67,11 +47,9 @@
       z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(1100px 700px at 10% -10%, rgba(88, 151, 255, 0.24), transparent 56%),
-        radial-gradient(820px 520px at 100% 0%, rgba(58, 104, 255, 0.18), transparent 52%),
-        radial-gradient(620px 380px at 50% 14%, rgba(122, 184, 255, 0.08), transparent 62%),
-        linear-gradient(180deg, #081322 0%, #050913 100%);
-      transform: translateZ(0);
+        radial-gradient(680px 420px at 10% -8%, rgba(91,156,255,.22), transparent 60%),
+        radial-gradient(540px 360px at 100% 2%, rgba(111,181,255,.13), transparent 58%),
+        linear-gradient(180deg, #081424 0%, #050913 58%, #03060d 100%);
     }
 
     body::after {
@@ -80,434 +58,430 @@
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
-        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.03), transparent 34%);
-      mix-blend-mode: screen;
+      opacity: .32;
+      background: linear-gradient(rgba(255,255,255,.014) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+      background-size: 46px 46px;
+      mask-image: linear-gradient(to bottom, #000, transparent 62%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, a { touch-action: manipulation; }
 
     .app {
-      position: relative;
-      z-index: 1;
       width: 100%;
-      max-width: 100%;
-      margin: 0;
-      padding: 18px 16px 40px;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px 110px;
       min-height: 100vh;
+      overflow: hidden;
     }
 
-    .section {
-      margin-top: 24px;
+    .hero { position: relative; padding: 4px 0 14px; }
+    .hero::before { display: none; }
+
+    .hero-topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 22px;
     }
 
-    .section-kicker {
-      display: inline-block;
-      margin-bottom: 10px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: #b8d8ff;
+    .brand { display: inline-flex; align-items: center; gap: 10px; min-width: 0; }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.065);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      font-size: 12px;
+      font-weight: 720;
+      letter-spacing: -.04em;
+      color: #e9f6ff;
     }
+    .brand-title { font-size: 14px; line-height: 1.05; font-weight: 680; letter-spacing: -.02em; }
+    .brand-sub { margin-top: 2px; font-size: 11px; line-height: 1.2; color: var(--muted-2); white-space: nowrap; }
 
-    .section-title {
-      margin: 0 0 12px;
-      font-size: 17px;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .section-desc {
-      margin: 0 0 14px;
-      font-size: 13px;
-      line-height: 1.62;
-      color: var(--muted);
-    }
-
-    .hero {
-      position: relative;
-      padding: 10px 2px 4px;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -42px;
-      left: -18px;
-      right: -18px;
-      height: 240px;
-      background: radial-gradient(circle at 30% 20%, rgba(108, 173, 255, 0.18), transparent 62%);
-      filter: blur(16px);
-      pointer-events: none;
-    }
-
-    .eyebrow {
+    .top-pill, .eyebrow, .tariff-label, .band-label {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 14px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #bddbff;
-      letter-spacing: 0.01em;
+      gap: 7px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.035);
+      color: rgba(221,239,255,.78);
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 560;
+      letter-spacing: -.01em;
+      box-shadow: none;
+      text-transform: none;
     }
 
+    .eyebrow { margin-bottom: 12px; }
     .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #e6f3ff 0%, #8fc8ff 100%);
-      box-shadow: 0 0 14px rgba(113, 176, 255, 0.8);
+      width: 6px; height: 6px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(159,211,255,.62);
     }
 
     h1 {
       margin: 0;
-      max-width: 360px;
-      font-size: 36px;
-      line-height: 1.01;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-      color: #f7fbff;
+      max-width: 560px;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: clamp(36px, 10.2vw, 54px);
+      line-height: .98;
+      letter-spacing: -.062em;
+      font-weight: 740;
+      color: #fbfdff;
     }
 
-    .hero-sub {
-      margin: 14px 0 0;
-      max-width: 390px;
-      font-size: 14px;
-      line-height: 1.64;
+    .title-accent {
+      background: linear-gradient(135deg, #fff 0%, #cfeaff 45%, #79bdff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: none;
+    }
+
+    .hero-sub, .section-desc, .band-text, .final-text {
       color: var(--muted);
+      font-size: 14px;
+      line-height: 1.62;
     }
+    .hero-sub { margin: 16px 0 0; max-width: 540px; }
+    strong { color: #fff; font-weight: 650; }
 
-    .hero-stack {
-      display: flex;
-      flex-wrap: wrap;
+    .hero-proof, .conversion-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
-    .hero-stack-item {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(145, 186, 255, 0.12);
-      color: #dcecff;
-      font-size: 13px;
-      font-weight: 500;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .proof-item, .strip-card {
+      min-height: auto;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,.035);
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .proof-big, .strip-card strong {
+      display: block;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 19px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.045em;
+      color: #fff;
+    }
+    .proof-text, .strip-card span {
+      display: block;
+      margin-top: 7px;
+      font-size: 12px;
+      line-height: 1.38;
+      color: var(--muted-2);
     }
 
     .hero-note {
-      margin-top: 18px;
-      padding: 14px 15px;
+      margin-top: 14px;
+      padding: 13px 14px;
       border-radius: 18px;
-      border: 1px solid rgba(145, 186, 255, 0.12);
-      background:
-        linear-gradient(180deg, rgba(18, 31, 58, 0.72) 0%, rgba(10, 18, 34, 0.78) 100%);
-      box-shadow:
-        var(--shadow-sm),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(242,216,170,.14);
+      background: rgba(242,216,170,.045);
+      box-shadow: none;
     }
+    .hero-note span { color: var(--muted); font-size: 13px; line-height: 1.48; }
+    .hero-note strong { color: #fff1d5; }
 
-    .hero-note-title {
-      margin-bottom: 4px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .hero-note-text {
-      font-size: 13px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .card {
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(14, 23, 43, 0.84) 0%, rgba(8, 14, 27, 0.9) 100%);
-      box-shadow:
-        var(--shadow-md),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 18px;
-    }
-
-    .btn {
+    .section { margin-top: 34px; position: relative; }
+    .section-head { margin-bottom: 12px; }
+    .section-kicker {
       display: inline-flex;
-      width: 100%;
       align-items: center;
-      justify-content: center;
-      padding: 14px 16px;
-      border-radius: 14px;
-      font-size: 14px;
-      font-weight: 600;
-      border: 1px solid rgba(145, 186, 255, 0.12);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      gap: 8px;
+      margin-bottom: 9px;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 650;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(167,213,255,.75);
     }
-
-    .btn-primary {
-      border: 0;
-      color: var(--button-text);
-      background:
-        linear-gradient(135deg, #e4f2ff 0%, #9ad0ff 44%, #67afff 100%);
-      box-shadow:
-        0 8px 24px rgba(92, 160, 255, 0.28),
-        inset 0 1px 0 rgba(255,255,255,0.5);
+    .section-kicker::before { content: ""; width: 18px; height: 1px; background: rgba(155,211,255,.65); }
+    .section-title, .final-title {
+      margin: 0;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 25px;
+      line-height: 1.08;
+      letter-spacing: -.052em;
+      font-weight: 700;
+      color: #fff;
     }
-
-    .pain-list,
-    .faq-list,
-    .how-list,
-    .inside-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .pain-item,
-    .faq-item,
-    .inside-item {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(145, 186, 255, 0.1);
-      background:
-        linear-gradient(180deg, rgba(18, 31, 58, 0.72) 0%, rgba(10, 18, 34, 0.78) 100%);
-      padding: 14px;
-    }
-
-    .pain-title,
-    .faq-title,
-    .inside-title {
-      margin-bottom: 5px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #f4f8ff;
-    }
-
-    .pain-text,
-    .faq-text,
-    .inside-text {
-      font-size: 13px;
-      line-height: 1.58;
-      color: var(--muted);
-    }
+    .section-title .soft { color: rgba(247,250,255,.56); font-weight: 650; }
+    .section-desc { margin: 10px 0 0; max-width: 530px; }
 
     .tariffs {
       display: grid;
-      gap: 12px;
+      gap: 11px;
+      margin-top: 20px;
     }
 
     .tariff {
       position: relative;
+      display: block;
       overflow: hidden;
-      border-radius: var(--radius-xl);
+      padding: 16px;
+      border-radius: 24px;
       border: 1px solid var(--border);
+      background: rgba(10, 18, 32, .72);
+      box-shadow: 0 14px 40px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.045);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .tariff:active { transform: scale(.992); }
+    .tariff::before, .tariff.featured::after { display: none; }
+
+    .tariff.featured {
+      border-color: rgba(170, 215, 255, .28);
       background:
-        linear-gradient(180deg, rgba(15, 24, 46, 0.84) 0%, rgba(8, 14, 27, 0.9) 100%);
-      box-shadow:
-        var(--shadow-md),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+        radial-gradient(360px 170px at 100% 0%, rgba(108,182,255,.15), transparent 58%),
+        rgba(13, 26, 46, .88);
+      box-shadow: 0 18px 52px rgba(59,137,255,.16), inset 0 1px 0 rgba(255,255,255,.06);
+    }
+
+    .tariff-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .tariff-label.hot { color: #fff0d2; border-color: rgba(242,216,170,.18); background: rgba(242,216,170,.055); }
+    .tariff-mini { flex: 0 0 auto; padding-top: 6px; color: rgba(232,240,255,.38); font-size: 11px; line-height: 1.15; text-align: right; }
+
+    .tariff-title {
+      margin: 0;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 26px;
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      font-weight: 710;
+      color: #fff;
+    }
+    .tariff.featured .tariff-title { font-size: 29px; }
+    .tariff-sub { margin: 9px 0 14px; max-width: 460px; font-size: 13px; line-height: 1.52; color: var(--muted); }
+
+    .price-line {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(190,220,255,.09);
+    }
+    .price {
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 35px;
+      line-height: .95;
+      letter-spacing: -.066em;
+      font-weight: 760;
+      color: #fff;
+    }
+    .tariff.featured .price { font-size: 38px; }
+    .price-note { margin-bottom: 2px; color: var(--muted-2); font-size: 11px; line-height: 1.25; text-align: right; }
+
+    .list { display: grid; gap: 9px; margin-bottom: 15px; }
+    .list-item { display: flex; gap: 9px; align-items: flex-start; font-size: 13px; line-height: 1.42; color: var(--muted); }
+    .dot {
+      width: 11px; height: 11px; min-width: 11px; margin-top: 4px;
+      border-radius: 999px;
+      background: rgba(159,211,255,.13);
+      border: 1px solid rgba(159,211,255,.28);
+      box-shadow: none;
+    }
+
+    .btn, .sticky-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 15px;
+      border: 1px solid rgba(190,220,255,.12);
+      background: rgba(255,255,255,.05);
+      color: #f7fbff;
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 660;
+      letter-spacing: -.012em;
+      box-shadow: none;
+    }
+    .btn-primary, .sticky-btn {
+      border: 0;
+      color: #06101d;
+      background: linear-gradient(135deg, #fff 0%, #dcefff 34%, #8ccaff 100%);
+      box-shadow: 0 12px 30px rgba(86,157,255,.22), inset 0 1px 0 rgba(255,255,255,.7);
+    }
+
+    .system-wrap { position: relative; padding: 18px 0 0; }
+    .system-wrap::before { display: none; }
+    .system-item { position: relative; display: grid; grid-template-columns: 32px 1fr; gap: 11px; padding: 0 0 20px; }
+    .system-item:last-child { padding-bottom: 0; }
+    .system-number {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      border: 1px solid rgba(174,212,255,.12);
+      background: rgba(255,255,255,.035);
+      color: rgba(207,232,255,.70);
+      font-size: 10px;
+      font-weight: 660;
+      letter-spacing: -.02em;
+    }
+    .system-content { padding-bottom: 18px; border-bottom: 1px solid rgba(190,220,255,.08); }
+    .system-item:last-child .system-content { padding-bottom: 0; border-bottom: 0; }
+    .system-title {
+      margin: 0;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 21px;
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      font-weight: 700;
+      color: #fff;
+    }
+    .system-text { margin-top: 6px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+
+    .band, .final-cta {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(190,220,255,.13);
+      background: rgba(11, 20, 36, .76);
+      box-shadow: 0 16px 48px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.045);
       padding: 18px;
-      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
-
-    .tariff:active {
-      transform: scale(0.995);
-    }
-
-    .tariff::before {
+    .band::before, .final-cta::before {
       content: "";
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), transparent 45%);
+      background: radial-gradient(420px 210px at 100% 0%, rgba(108,182,255,.13), transparent 60%);
     }
-
-    .tariff.featured {
-      transform: translateY(-2px);
-      border-color: var(--border-strong);
-      background:
-        radial-gradient(520px 240px at 100% 0%, rgba(94, 164, 255, 0.18), transparent 55%),
-        linear-gradient(180deg, rgba(20, 34, 65, 0.92) 0%, rgba(9, 18, 35, 0.95) 100%);
-      box-shadow:
-        0 18px 48px rgba(25, 77, 177, 0.18),
-        inset 0 1px 0 rgba(255,255,255,0.05);
+    .band > *, .final-cta > * { position: relative; z-index: 1; }
+    .band-label { margin-bottom: 13px; color: #fff0d4; border-color: rgba(242,216,170,.15); background: rgba(242,216,170,.045); }
+    .band-title-row { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: end; margin-bottom: 10px; }
+    .band-big {
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 40px;
+      line-height: .88;
+      letter-spacing: -.075em;
+      font-weight: 760;
+      color: #fff;
+      white-space: nowrap;
     }
+    .band-points { display: grid; margin-top: 15px; border-top: 1px solid rgba(190,220,255,.09); }
+    .band-point { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(190,220,255,.08); }
+    .band-point:last-child { border-bottom: 0; padding-bottom: 0; }
+    .band-point-num { color: rgba(206,232,255,.42); font-size: 12px; font-weight: 680; }
+    .band-point-title { font-size: 14px; font-weight: 680; color: #fff; line-height: 1.25; }
+    .band-point-text { margin-top: 4px; font-size: 12px; line-height: 1.45; color: var(--muted-2); }
 
-    .tariff.featured::after {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(180,220,255,0.35), rgba(96,146,255,0.08));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .tariff-label {
-      display: inline-block;
-      margin-bottom: 14px;
-      font-size: 11px;
-      line-height: 1;
-      font-weight: 600;
-      color: #bddbff;
-      letter-spacing: 0.01em;
-    }
-
-    .tariff-title {
-      margin: 0 0 8px;
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .tariff.featured .tariff-title {
-      font-size: 28px;
-    }
-
-    .tariff-sub {
-      margin: 0 0 16px;
-      max-width: 300px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .price {
-      margin: 0 0 16px;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-      color: #f7fbff;
-    }
-
-    .tariff.featured .price {
-      font-size: 36px;
-    }
-
-    .list {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .list-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-size: 13px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .dot {
-      width: 5px;
-      height: 5px;
-      min-width: 5px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, #d8ebff 0%, #7dbfff 100%);
-      margin-top: 7px;
-      box-shadow: 0 0 10px rgba(111, 175, 255, 0.55);
-    }
-
-    .special-card {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(540px 220px at 100% 0%, rgba(102, 168, 255, 0.16), transparent 56%),
-        linear-gradient(180deg, rgba(18, 30, 58, 0.88) 0%, rgba(8, 14, 27, 0.92) 100%);
-      border-color: rgba(145, 186, 255, 0.16);
-    }
-
-    .special-label {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(145, 186, 255, 0.14);
-      font-size: 11px;
-      font-weight: 600;
-      color: #d9ebff;
-      letter-spacing: 0.01em;
-    }
-
-    .steps {
-      display: grid;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 12px;
-      align-items: start;
-      padding-top: 12px;
-      border-top: 1px solid rgba(145, 186, 255, 0.1);
-    }
-
-    .step:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .step-number {
+    .faq-shell { margin-top: 14px; border-top: 1px solid rgba(190,220,255,.10); }
+    details { border-bottom: 1px solid rgba(190,220,255,.09); }
+    summary {
+      list-style: none;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(145, 186, 255, 0.14);
-      color: #dff0ff;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 15px 0;
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.25;
+      font-weight: 650;
+      letter-spacing: -.02em;
+    }
+    summary::-webkit-details-marker { display: none; }
+    .faq-plus {
+      position: relative;
+      flex: 0 0 auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(190,220,255,.11);
+      background: rgba(255,255,255,.035);
+    }
+    .faq-plus::before, .faq-plus::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 10px; height: 1.5px;
+      border-radius: 999px;
+      background: rgba(207,232,255,.84);
+      transform: translate(-50%, -50%);
+      transition: transform .16s ease, opacity .16s ease;
+    }
+    .faq-plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+    details[open] .faq-plus::after { opacity: 0; transform: translate(-50%, -50%) rotate(0deg); }
+    .faq-body { padding: 0 36px 15px 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    .final-cta { text-align: center; }
+    .final-title { font-size: 28px; }
+    .final-text { margin: 11px auto 16px; max-width: 460px; }
+
+    .sticky-buy {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 20;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(180deg, rgba(5,9,19,0), rgba(5,9,19,.88) 34%, rgba(5,9,19,.96));
+      pointer-events: none;
+    }
+    .sticky-inner {
+      width: 100%;
+      max-width: 648px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 9px 9px 13px;
+      border-radius: 20px;
+      border: 1px solid rgba(190,220,255,.12);
+      background: rgba(8,15,29,.82);
+      box-shadow: 0 16px 38px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      pointer-events: auto;
+    }
+    .sticky-title { font-size: 12px; line-height: 1.22; font-weight: 650; color: #fff; letter-spacing: -.015em; }
+    .sticky-sub { margin-top: 2px; font-size: 11px; line-height: 1.2; color: var(--muted-2); }
+    .sticky-btn { width: auto; min-height: 40px; padding: 0 15px; border-radius: 13px; font-size: 12px; font-weight: 720; white-space: nowrap; }
+
+    @media (min-width: 520px) {
+      .tariffs { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+      .tariff { padding: 15px; }
+      .tariff.featured { transform: translateY(-6px); }
+      .tariff-title, .tariff.featured .tariff-title { font-size: 24px; }
+      .price, .tariff.featured .price { font-size: 31px; }
+      .price-line { display: block; }
+      .price-note { margin-top: 7px; text-align: left; }
     }
 
-    .step-content {
-      min-width: 0;
-    }
-
-    .how-item {
-      padding-top: 10px;
-      border-top: 1px solid rgba(145, 186, 255, 0.1);
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .how-item:first-child {
-      padding-top: 0;
-      border-top: 0;
-    }
-
-    .how-item strong {
-      color: #f7fbff;
-      font-weight: 600;
+    @media (max-width: 360px) {
+      .app { padding-left: 13px; padding-right: 13px; }
+      h1 { font-size: 35px; }
+      .hero-proof, .conversion-strip { grid-template-columns: 1fr; }
+      .band-title-row { grid-template-columns: 1fr; }
+      .band-big { font-size: 36px; }
     }
   </style>
 </head>
@@ -515,179 +489,274 @@
   <div class="app">
 
     <section class="hero">
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        Экосистема роста
+      <div class="hero-topline">
+        <div class="brand">
+          <div class="brand-mark">KC</div>
+          <div class="brand-text">
+            <div class="brand-title">KantClub</div>
+            <div class="brand-sub">закрытая среда монтажёров</div>
+          </div>
+        </div>
+        <div class="top-pill">доступ через Tribute</div>
       </div>
 
-      <h1>Выберите доступ</h1>
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Система обучения
+      </div>
+
+      <h1>Среда, где монтаж превращается <span class="title-accent">в клиентов</span></h1>
 
       <p class="hero-sub">
-        KantClub — закрытая система роста для монтажёров:
-        навык, упаковка себя, клиенты, деньги и сильное окружение.
+        KantClub — закрытый клуб для монтажёров, которые хотят не просто смотреть уроки, а <strong>усиливать навык, работать в командах, находить клиентов и расти в доходе.</strong>
       </p>
 
-   
-     
-      </p>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <span class="proof-big">Навык</span>
+          <span class="proof-text">Reels, motion, For Beginners и другое</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-big">Клиенты</span>
+          <span class="proof-text">упаковка, первые сообщения, продажи и рост чека</span>
+        </div>
+      </div>
 
-      <div class="tariffs">
+      <div class="hero-note">
+        <span><strong>Лучший вход — на 3 месяца:</strong> этого достаточно, чтобы не просто осмотреться, а пройти первые действия, попасть в «Поток» и начать двигаться к результату.</span>
+      </div>
+
+      <div class="tariffs" id="tariffs">
         <a href="https://example.com/tribute-1m" class="tariff">
-          <div class="tariff-label">1 месяц</div>
+          <div class="tariff-row">
+            <div class="tariff-label">1 месяц</div>
+            <div class="tariff-mini">быстрый вход</div>
+          </div>
           <h3 class="tariff-title">Старт</h3>
           <p class="tariff-sub">
-            Для тех, кто хочет посмотреть всё изнутри и спокойно определить свой главный вектор роста.
+            Зайти, посмотреть систему и понять, насколько клуб попадает в вашу задачу.
           </p>
-          <div class="price">1490 ₽</div>
-
-          <div class="list">
-            <div class="list-item"><span class="dot"></span><span>Быстрый вход в KantClub</span></div>
-            <div class="list-item"><span class="dot"></span><span>Подходит, чтобы осмотреться без длинного обязательства</span></div>
-            <div class="list-item"><span class="dot"></span><span>Нормальный формат, если хочешь зайти без перегруза</span></div>
+          <div class="price-line">
+            <div class="price">1490 ₽</div>
+            <div class="price-note">минимальный формат доступа</div>
           </div>
 
-          <span class="btn">Выбрать доступ</span>
+          <div class="list">
+            <div class="list-item"><span class="dot"></span><span><strong>Быстрый вход</strong> в закрытые материалы</span></div>
+            <div class="list-item"><span class="dot"></span><span>Можно осмотреться без долгого обязательства</span></div>
+            <div class="list-item"><span class="dot"></span><span>Подойдёт, если пока просто хотите попробовать</span></div>
+          </div>
+
+          <span class="btn">Выбрать</span>
         </a>
 
         <a href="https://example.com/tribute-3m" class="tariff featured">
-          <div class="tariff-label">3 месяца · оптимально</div>
-          <h3 class="tariff-title">Выйти в клиентов</h3>
+          <div class="tariff-row">
+            <div class="tariff-label hot">3 месяца · оптимально</div>
+            <div class="tariff-mini">главный выбор</div>
+          </div>
+          <h3 class="tariff-title">Выйти к клиентам</h3>
           <p class="tariff-sub">
-            Лучший формат, чтобы пройти фундамент, усилить навык и двинуться в клиентов и деньги.
+           Оптимальный формат, если цель — не просто посмотреть клуб изнутри, а реально начать двигаться к клиентам и доходу.
           </p>
-          <div class="price">3990 ₽</div>
+          <div class="price-line">
+            <div class="price">3990 ₽</div>
+            <div class="price-note">с доступом к «Потоку»</div>
+          </div>
 
           <div class="list">
-            <div class="list-item"><span class="dot"></span><span>Лучший баланс по времени и вовлечению</span></div>
-            <div class="list-item"><span class="dot"></span><span>Возможность найти свою «Десятку»</span></div>
+            <div class="list-item"><span class="dot"></span><span><strong>Лучший баланс</strong> времени и вовлечения</span></div>
+            <div class="list-item"><span class="dot"></span><span>Нетворкинг «Поток» и движение в группе</span></div>
             <div class="list-item"><span class="dot"></span><span>Персональные разборы от Kant</span></div>
           </div>
 
-          <span class="btn btn-primary">Выбрать доступ</span>
+          <span class="btn btn-primary">Выбрать</span>
         </a>
 
         <a href="https://example.com/tribute-1y" class="tariff">
-          <div class="tariff-label">1 год</div>
+          <div class="tariff-row">
+            <div class="tariff-label">1 год</div>
+            <div class="tariff-mini">в долгую</div>
+          </div>
           <h3 class="tariff-title">Стать частью среды</h3>
           <p class="tariff-sub">
-            Для тех, кто хочет идти в долгую и рассматривает монтаж как источник дохода.
+            Для тех, кто смотрит на монтаж как долгосрочную карьеру, а не разовую попытку.
           </p>
-          <div class="price">9990 ₽</div>
+          <div class="price-line">
+            <div class="price">9990 ₽</div>
+            <div class="price-note">долгий горизонт роста</div>
+          </div>
 
           <div class="list">
-            <div class="list-item"><span class="dot"></span><span>Подходит для серьёзного входа в профессию</span></div>
-            <div class="list-item"><span class="dot"></span><span>Спокойный горизонт роста в одной системе</span></div>
-            <div class="list-item"><span class="dot"></span><span>Персональная помощь от лидеров</span></div>
+            <div class="list-item"><span class="dot"></span><span><strong>Серьёзный вход</strong> в профессию и окружение</span></div>
+            <div class="list-item"><span class="dot"></span><span>Постоянный доступ к системе и обновлениям</span></div>
+            <div class="list-item"><span class="dot"></span><span>Поддержка лидеров и рост внутри клуба</span></div>
           </div>
 
-          <span class="btn">Выбрать доступ</span>
+          <span class="btn">Выбрать</span>
         </a>
       </div>
+
+      <div class="conversion-strip">
+        <div class="strip-card">
+          <strong>5 направлений</strong>
+          <span>навык, упаковка, клиенты, деньги и окружение</span>
+        </div>
+        <div class="strip-card">
+          <strong>не “на потом”</strong>
+          <span>клуб собран под действия, а не под склад уроков</span>
+        </div>
+      </div>
     </section>
 
     <section class="section">
-      <div class="card">
-        <div class="section-kicker">Экосистема</div>
-        <h2 class="section-title">Что внутри</h2>
-        <p class="section-desc">
-          Экосистема роста: навык, упаковка себя, клиенты, деньги и среда единомышленников.
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">что внутри</div>
+          <h2 class="section-title">Одна система. <span class="soft">Пять точек роста.</span></h2>
+        </div>
+      </div>
+      <p class="section-desc">
+        Мы не упираемся только в монтаж. Сильный специалист растёт сразу в нескольких местах: навык, подача, продажи, клиенты и окружение.
+      </p>
+
+      <div class="system-wrap">
+        <div class="system-item">
+          <div class="system-number">01</div>
+          <div class="system-content">
+            <h3 class="system-title">Навык</h3>
+            <div class="system-text">Reels, motion design, база программ и практические материалы, которые помогают расти в навыках.</div>
+          </div>
+        </div>
+
+        <div class="system-item">
+          <div class="system-number">02</div>
+          <div class="system-content">
+            <h3 class="system-title">Упаковка себя</h3>
+            <div class="system-text">Профиль, портфолио, позиционирование и подача себя не как “человека, который монтирует”, а как <strong>специалиста.</strong></div>
+          </div>
+        </div>
+
+        <div class="system-item">
+          <div class="system-number">03</div>
+          <div class="system-content">
+            <h3 class="system-title">Клиенты</h3>
+            <div class="system-text">Где искать, как писать, как общаться, как не сливать диалог и как доводить человека до оплаты.</div>
+          </div>
+        </div>
+
+        <div class="system-item">
+          <div class="system-number">04</div>
+          <div class="system-content">
+            <h3 class="system-title">Деньги</h3>
+            <div class="system-text">Рост чека, уверенность в продаже себя, работа с возражениями и постепенное увеличение дохода.</div>
+          </div>
+        </div>
+
+        <div class="system-item">
+          <div class="system-number">05</div>
+          <div class="system-content">
+            <h3 class="system-title">Окружение</h3>
+            <div class="system-text">Люди, которые тоже двигаются, делают работы, ищут клиентов и не дают вам снова пропасть “на потом”.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="band">
+        <div class="band-label">доступ с тарифа на 3 месяца</div>
+        <div class="band-title-row">
+          <h2 class="section-title">Нетворкинг «Поток»</h2>
+        </div>
+        <p class="band-text">
+          Небольшие группы, где участники примерно на одном уровне. У каждой группы есть общий фокус, чат, созвоны, отчёты и лидер, который помогает не развалиться после первой мотивации.
         </p>
 
-        <div class="inside-list">
-          <div class="inside-item">
-            <div class="inside-title">Навык</div>
-            <div class="inside-text">Reels, Motion Design, база программ и другое</div>
+        <div class="band-points">
+          <div class="band-point">
+            <div class="band-point-num">01</div>
+            <div>
+              <div class="band-point-title">Не общий шумный чат</div>
+              <div class="band-point-text">А небольшая рабочая группа, где видно прогресс каждого.</div>
+            </div>
           </div>
-
-          <div class="inside-item">
-            <div class="inside-title">Упаковка себя</div>
-            <div class="inside-text">Профиль, портфолио, позиционирование, подача себя как специалиста</div>
+          <div class="band-point">
+            <div class="band-point-num">02</div>
+            <div>
+              <div class="band-point-title">Созвоны и разборы</div>
+              <div class="band-point-text">Можно получать обратную связь, а не просто молча смотреть материалы.</div>
+            </div>
           </div>
-
-          <div class="inside-item">
-            <div class="inside-title">Клиенты</div>
-            <div class="inside-text">Поиск клиентов, аутрич, первые сообщения, удержание</div>
-          </div>
-
-          <div class="inside-item">
-            <div class="inside-title">Деньги</div>
-            <div class="inside-text">Рост чека, уверенность в продаже себя, развитие дохода</div>
-          </div>
-
-          <div class="inside-item">
-            <div class="inside-title">Нетворкинг</div>
-            <div class="inside-text">Работа в командах под руководством Kant.</div>
+          <div class="band-point">
+            <div class="band-point-num">03</div>
+            <div>
+              <div class="band-point-title">Один лидер на каждый Поток</div>
+              <div class="band-point-text">Лидер ведёт отчёты, организует группу и помогает держать фокус.</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="card special-card">
-        <div class="special-label">Формат внутри клуба</div>
-        <h2 class="section-title">Нетворкинг «Десятка»</h2>
-        <p class="section-desc">
-          Доступ с тарифа на 3 месяца.
+      <div class="section-kicker">ответы</div>
+      <h2 class="section-title">Частые вопросы</h2>
+      <p class="section-desc">Коротко по главным сомнениям перед входом.</p>
+
+      <div class="faq-shell">
+        <details open>
+          <summary>
+            Это только про монтаж?
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Нет. Монтаж — база, но дальше важнее упаковка, портфолио, клиенты, общение, продажи и рост дохода. Клуб как раз про связку навыка и рынка.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Подойдёт, если я ещё не на сильном уровне?
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Да. Есть материалы для начинающих и для тех, кто уже что-то умеет. Потоки формируются так, чтобы человек попадал в понятное для себя окружение.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            Что будет после оплаты?
+            <span class="faq-plus"></span>
+          </summary>
+          <div class="faq-body">
+            Оплата проходит через Tribute. После оплаты вы получаете доступ к клубу и можете сразу заходить в материалы, чаты и доступные форматы.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="final-cta">
+        <h2 class="final-title">Выберите доступ и заходите внутрь</h2>
+        <p class="final-text">
+          Если хотите просто сохранить материалы “когда-нибудь” — можно не торопиться. Если хотите двигаться к клиентам и доходу — начинайте с тарифа, где есть среда и разборы.
         </p>
-
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">01</div>
-            <div class="step-content">
-              <div class="faq-title">Небольшой формат</div>
-              <div class="faq-text">Группы из 5–10 человек, где все участники находятся на одном уровне.</div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">02</div>
-            <div class="step-content">
-              <div class="faq-title">Общий фокус</div>
-              <div class="faq-text">Общая цель, единый чат, созвоны, помощь и разборы под присмотром Kant.</div>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-number">03</div>
-            <div class="step-content">
-              <div class="faq-title">Лидер</div>
-              <div class="faq-text">В каждой Десятке выбирается лидер, который организовывает созвоны, следит за результатами участников и ведёт отчёты.</div>
-            </div>
-          </div>
-        </div>
+        <a href="#tariffs" class="btn btn-primary">Перейти к тарифам</a>
       </div>
     </section>
 
-    <section class="section">
-      <div class="card">
-        <div class="section-kicker">Ответы</div>
-        <h2 class="section-title">Частые вопросы</h2>
+  </div>
 
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-title">Это только про монтаж?</div>
-            <div class="faq-text">
-              Нет. Внутри не только навык, но и упаковка себя, клиенты, продажи, рост дохода и среда, которая помогает расти.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-title">Подойдёт, если я ещё не на сильном уровне?</div>
-            <div class="faq-text">
-              Да. Внутри есть и база, и более сильные направления. Десятка также доступна и для новчиков.
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-title">Что будет после оплаты?</div>
-            <div class="faq-text">
-              Оплата идёт через Tribute. После оплаты Tribute сразу выдаст ссылку на вход.
-            </div>
-          </div>
-        </div>
+  <div class="sticky-buy">
+    <div class="sticky-inner">
+      <div>
+        <div class="sticky-title">KantClub · доступ открыт</div>
+        <div class="sticky-sub">оптимально — 3 месяца</div>
       </div>
-    </section>
-
+      <a href="#tariffs" class="sticky-btn">Выбрать</a>
+    </div>
   </div>
 
   <script>
