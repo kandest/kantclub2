@@ -249,17 +249,39 @@
     }
     .tariff:active { transform: scale(.992); }
     .tariff::before, .tariff.featured::after { display: none; }
+    .tariff.featured::before { display: block; }
 
     .tariff.featured {
-      border-color: rgba(170, 215, 255, .28);
+      border-color: rgba(170, 215, 255, .34);
       background:
-        radial-gradient(360px 170px at 100% 0%, rgba(108,182,255,.15), transparent 58%),
+        radial-gradient(420px 190px at 50% -12%, rgba(125,199,255,.18), transparent 62%),
+        radial-gradient(360px 170px at 100% 0%, rgba(108,182,255,.13), transparent 58%),
         rgba(13, 26, 46, .88);
-      box-shadow: 0 18px 52px rgba(59,137,255,.16), inset 0 1px 0 rgba(255,255,255,.06);
+      box-shadow:
+        0 18px 52px rgba(59,137,255,.16),
+        0 0 0 1px rgba(159,211,255,.04),
+        inset 0 1px 0 rgba(255,255,255,.07);
+    }
+
+    .tariff.featured::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(177,222,255,.84), transparent);
+      box-shadow: 0 0 18px rgba(123,196,255,.45);
+      pointer-events: none;
     }
 
     .tariff-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-    .tariff-label.hot { color: #fff0d2; border-color: rgba(242,216,170,.18); background: rgba(242,216,170,.055); }
+    .tariff-label.hot {
+      color: #dff2ff;
+      border-color: rgba(159,211,255,.22);
+      background: rgba(159,211,255,.075);
+      box-shadow: 0 0 22px rgba(108,182,255,.10), inset 0 1px 0 rgba(255,255,255,.05);
+    }
     .tariff-mini { flex: 0 0 auto; padding-top: 6px; color: rgba(232,240,255,.38); font-size: 11px; line-height: 1.15; text-align: right; }
 
     .tariff-title {
@@ -297,11 +319,17 @@
     .list { display: grid; gap: 9px; margin-bottom: 15px; }
     .list-item { display: flex; gap: 9px; align-items: flex-start; font-size: 13px; line-height: 1.42; color: var(--muted); }
     .dot {
-      width: 11px; height: 11px; min-width: 11px; margin-top: 4px;
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      margin-top: 6px;
       border-radius: 999px;
-      background: rgba(159,211,255,.13);
-      border: 1px solid rgba(159,211,255,.28);
-      box-shadow: none;
+      background: #9fd3ff;
+      border: 0;
+      opacity: .92;
+      box-shadow:
+        0 0 0 3px rgba(159,211,255,.075),
+        0 0 14px rgba(119,190,255,.45);
     }
 
     .btn, .sticky-btn {
@@ -437,7 +465,7 @@
     .final-title { font-size: 28px; }
     .final-text { margin: 11px auto 16px; max-width: 460px; }
 
-    .sticky-buy {
+    .sticky-buy-disabled {
       position: fixed;
       left: 0; right: 0; bottom: 0;
       z-index: 20;
@@ -465,6 +493,91 @@
     .sticky-title { font-size: 12px; line-height: 1.22; font-weight: 650; color: #fff; letter-spacing: -.015em; }
     .sticky-sub { margin-top: 2px; font-size: 11px; line-height: 1.2; color: var(--muted-2); }
     .sticky-btn { width: auto; min-height: 40px; padding: 0 15px; border-radius: 13px; font-size: 12px; font-weight: 720; white-space: nowrap; }
+
+
+
+    .legal-note {
+      margin: 12px 0 0;
+      color: rgba(232,240,255,.44);
+      font-size: 11px;
+      line-height: 1.45;
+      text-align: center;
+    }
+    .legal-note a {
+      color: rgba(207,232,255,.78);
+      border-bottom: 1px solid rgba(207,232,255,.22);
+    }
+
+    .legal-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(3, 6, 13, .68);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .legal-modal.is-open { display: flex; }
+    .legal-card {
+      width: 100%;
+      max-width: 640px;
+      max-height: min(78vh, 640px);
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(190,220,255,.14);
+      background: rgba(8, 15, 29, .96);
+      box-shadow: 0 22px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .legal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 16px 12px;
+      border-bottom: 1px solid rgba(190,220,255,.09);
+    }
+    .legal-title {
+      margin: 0;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 20px;
+      line-height: 1.1;
+      letter-spacing: -.04em;
+      font-weight: 700;
+      color: #fff;
+    }
+    .legal-close {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(190,220,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      color: rgba(232,240,255,.78);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .legal-body {
+      max-height: calc(min(78vh, 640px) - 64px);
+      overflow: auto;
+      padding: 15px 16px 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .legal-body h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+    }
+    .legal-body p { margin: 0 0 13px; }
+    .legal-body strong { font-weight: 680; }
 
     @media (min-width: 520px) {
       .tariffs { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
@@ -552,8 +665,8 @@
 
         <a href="https://example.com/tribute-3m" class="tariff featured">
           <div class="tariff-row">
-            <div class="tariff-label hot">3 месяца · оптимально</div>
-            <div class="tariff-mini">главный выбор</div>
+            <div class="tariff-label hot">оптимальный вход</div>
+            <div class="tariff-mini">с Потоком</div>
           </div>
           <h3 class="tariff-title">Выйти к клиентам</h3>
           <p class="tariff-sub">
@@ -595,6 +708,13 @@
 
           <span class="btn">Выбрать</span>
         </a>
+      </div>
+
+
+
+      <div class="legal-note">
+        Оплачивая доступ, вы соглашаетесь с <a href="#" data-modal="terms">условиями доступа</a> и <a href="#" data-modal="privacy">политикой конфиденциальности</a>.<br>
+        Подписка может продлеваться автоматически через Tribute. Отключить автосписание можно в интерфейсе Tribute.
       </div>
 
       <div class="conversion-strip">
@@ -749,6 +869,46 @@
 
   </div>
 
+
+
+  <div class="legal-modal" id="termsModal" aria-hidden="true">
+    <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
+      <div class="legal-head">
+        <h3 class="legal-title" id="termsTitle">Условия доступа</h3>
+        <button class="legal-close" type="button" data-close-modal>×</button>
+      </div>
+      <div class="legal-body">
+        <p>Получая доступ к KantClub, вы соглашаетесь с указанными условиями.</p>
+        <p><strong>1. Предмет</strong><br>KantClub предоставляет доступ к обучающим материалам, чатам и дополнительным форматам внутри закрытого сообщества.</p>
+        <p><strong>2. Доступ</strong><br>Доступ предоставляется после успешной оплаты через сторонний сервис Tribute на выбранный срок.<br>По истечении срока доступ автоматически прекращается, если не продлён.</p>
+        <p><strong>3. Формат</strong><br>Материалы предоставляются в цифровом виде. Результаты зависят от действий пользователя и не гарантируются.</p>
+        <p><strong>4. Возвраты</strong><br>Возвраты не предусмотрены после получения доступа, так как услуга считается оказанной с момента открытия материалов.</p>
+        <p><strong>5. Использование</strong><br>Доступ предоставляется только для личного использования.<br>Запрещается передавать доступ третьим лицам, распространять материалы или перепродавать их.</p>
+        <p><strong>6. Ограничение доступа</strong><br>Администрация вправе ограничить доступ в случае нарушения правил или злоупотребления системой.</p>
+        <p><strong>7. Изменения</strong><br>Условия могут обновляться. Актуальная версия всегда доступна в мини-приложении.</p>
+        <p><strong>8. Подписка и автосписание</strong><br>Оплата доступа может оформляться в формате подписки через сервис Tribute.<br>В этом случае средства списываются автоматически за каждый следующий период (месяц / 3 месяца / год) до момента отмены.<br>Пользователь может отключить автосписание самостоятельно через интерфейс Tribute.<br>Возвраты за уже начавшийся период не предусмотрены.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-modal" id="privacyModal" aria-hidden="true">
+    <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
+      <div class="legal-head">
+        <h3 class="legal-title" id="privacyTitle">Политика конфиденциальности</h3>
+        <button class="legal-close" type="button" data-close-modal>×</button>
+      </div>
+      <div class="legal-body">
+        <p>Мы уважаем вашу конфиденциальность и используем только необходимый минимум данных.</p>
+        <p><strong>1. Какие данные собираются</strong><br>— Telegram ID<br>— Имя пользователя, если доступно<br>— Данные, необходимые для предоставления доступа</p>
+        <p><strong>2. Как используются данные</strong><br>Данные используются исключительно для:<br>— предоставления доступа к KantClub<br>— работы бота и мини-приложения<br>— связи с пользователем при необходимости</p>
+        <p><strong>3. Передача данных</strong><br>Данные не передаются третьим лицам, за исключением сервисов, необходимых для работы оплаты, например Tribute.</p>
+        <p><strong>4. Хранение</strong><br>Данные хранятся в объёме, необходимом для работы сервиса.</p>
+        <p><strong>5. Безопасность</strong><br>Мы принимаем разумные меры для защиты данных, однако не можем гарантировать абсолютную безопасность.</p>
+        <p><strong>6. Согласие</strong><br>Используя сервис, вы соглашаетесь с данной политикой.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="sticky-buy">
     <div class="sticky-inner">
       <div>
@@ -760,6 +920,43 @@
   </div>
 
   <script>
+    const openModal = (type) => {
+      const modal = document.getElementById(type === 'terms' ? 'termsModal' : 'privacyModal');
+      if (!modal) return;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      document.querySelectorAll('.legal-modal').forEach((modal) => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      });
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll('[data-modal]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal(link.dataset.modal);
+      });
+    });
+
+    document.querySelectorAll('[data-close-modal]').forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    document.querySelectorAll('.legal-modal').forEach((modal) => {
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) closeModal();
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeModal();
+    });
+
     if (window.Telegram && window.Telegram.WebApp) {
       Telegram.WebApp.ready();
       Telegram.WebApp.expand();
