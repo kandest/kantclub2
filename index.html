@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#060b14" />
-  <title>KantClub</title>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<meta content="#060b14" name="theme-color"/>
+<title>KantClub</title>
+<style>
     :root {
       --bg: #060b14;
       --surface: rgba(13, 22, 38, .74);
@@ -609,321 +609,947 @@
       visibility: hidden !important;
       pointer-events: none !important;
     }
-  </style>
-</head>
+  
+
+    .access-confirm-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(3, 6, 13, .68);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .access-confirm-modal.is-open {
+      display: flex;
+    }
+    .access-confirm-card {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid rgba(190,220,255,.16);
+      background:
+        radial-gradient(360px 190px at 50% -10%, rgba(125,199,255,.16), transparent 60%),
+        rgba(8, 15, 29, .96);
+      box-shadow: 0 22px 70px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+      text-align: center;
+    }
+    .access-confirm-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(190,220,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.045);
+      color: rgba(232,240,255,.78);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .access-confirm-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(190,220,255,.18);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 760;
+      letter-spacing: -.04em;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .access-confirm-title {
+      margin: 0;
+      font-family: "SF Pro Display", Inter, sans-serif;
+      font-size: 28px;
+      line-height: 1.05;
+      letter-spacing: -.055em;
+      font-weight: 740;
+      color: #fff;
+    }
+    .access-confirm-text {
+      margin: 11px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .access-confirm-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 0 0 14px;
+      padding: 13px;
+      border-radius: 18px;
+      border: 1px solid rgba(190,220,255,.10);
+      background: rgba(255,255,255,.035);
+      color: rgba(232,240,255,.76);
+      font-size: 12px;
+      line-height: 1.42;
+      text-align: left;
+      cursor: pointer;
+    }
+    .access-confirm-check input {
+      width: 17px;
+      height: 17px;
+      margin: 1px 0 0;
+      accent-color: #9fd3ff;
+      flex: 0 0 auto;
+    }
+    .access-confirm-btn {
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #fff 0%, #dcefff 34%, #8ccaff 100%);
+      color: #06101d;
+      font-size: 14px;
+      font-weight: 720;
+      letter-spacing: -.012em;
+      box-shadow: 0 12px 30px rgba(86,157,255,.22), inset 0 1px 0 rgba(255,255,255,.7);
+      cursor: pointer;
+    }
+    .access-confirm-btn:disabled {
+      cursor: not-allowed;
+      opacity: .42;
+      box-shadow: none;
+    }
+    .access-confirm-links {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      color: rgba(232,240,255,.50);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+    .access-confirm-links a {
+      color: rgba(207,232,255,.82);
+      border-bottom: 1px solid rgba(207,232,255,.20);
+    }
+
+
+.access-confirm-btn {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+
+/* CENTER HERO TEXT */
+.hero {
+  text-align: center;
+}
+
+.hero-sub {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* STACK TARIFFS VERTICALLY NICELY */
+.tariffs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 32px;
+}
+
+/* Add slight overlap premium effect */
+.tariff {
+  transform: translateY(0);
+}
+
+.tariff:nth-child(2) {
+  transform: translateY(-8px);
+}
+
+.tariff:nth-child(3) {
+  transform: translateY(-16px);
+}
+
+/* make centered spacing */
+.tariff {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* LEFT ALIGN FIX */
+.hero {
+  text-align: left !important;
+}
+
+.hero-sub {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.tariffs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.tariff {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* REMOVE GLOW */
+.tariff.featured {
+  box-shadow: none !important;
+}
+
+.tariff.featured::before {
+  display: none !important;
+}
+
+/* CLEAN TITLE */
+h1 {
+  font-size: 40px !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.04em !important;
+  font-weight: 700 !important;
+}
+
+/* softer accent */
+.title-accent {
+  background: none !important;
+  color: #9fd3ff !important;
+}
+
+/* REMOVE ALL GLOW */
+* {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.dot {
+  box-shadow: none !important;
+}
+
+/* NEW TITLE */
+h1 {
+  font-size: 38px !important;
+  line-height: 1.15 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.title-accent {
+  color: #ffffff !important;
+}
+
+/* Typography refine */
+h1 {
+  font-weight: 650 !important;
+}
+
+strong {
+  color: #9fd3ff !important;
+  font-weight: 600 !important;
+}
+
+/* CLEAN ALIGN + PREMIUM WEIGHT */
+
+h1 {
+  font-weight: 620 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.12 !important;
+}
+
+.hero-sub {
+  font-weight: 420;
+  max-width: 520px;
+}
+
+/* PERFECT ALIGN */
+.app {
+  max-width: 640px;
+}
+
+.tariff {
+  max-width: 520px;
+}
+
+/* text alignment consistency */
+.hero, .tariffs, .section {
+  padding-left: 4px;
+}
+
+/* THINNER FONT GLOBAL */
+h1 {
+  font-weight: 560 !important;
+}
+
+.tariff-title {
+  font-weight: 600 !important;
+}
+
+.section-title {
+  font-weight: 600 !important;
+}
+
+.final-title {
+  font-weight: 600 !important;
+}
+
+/* REMOVE BLUE ACCENTS */
+strong {
+  color: #ffffff !important;
+}
+
+.title-accent {
+  color: #ffffff !important;
+}
+
+body {
+  background: linear-gradient(90deg, rgb(20,30,45), rgb(18,26,36), rgb(70,90,110)) !important;
+}
+
+body::before,
+body::after {
+  display: none !important;
+}
+
+/* CENTER EVERYTHING */
+.hero {
+  text-align: center !important;
+}
+
+.hero-sub {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+/* CENTER TARIFFS */
+.tariffs {
+  align-items: center !important;
+}
+
+.tariff {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* BOLDER TITLE */
+h1 {
+  font-weight: 720 !important;
+  text-align: center !important;
+}
+
+/* TOP REFINEMENT */
+.hero {
+  padding-top: 40px;
+}
+
+.hero-top-refined {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.hero-badge {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* TITLE POLISH */
+h1 {
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: 42px !important;
+  letter-spacing: -0.04em;
+}
+
+/* better spacing */
+.hero-sub {
+  margin-top: 10px;
+  max-width: 520px;
+}
+
+/* TITLE REDESIGN */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 14px;
+  line-height: 1.05;
+}
+
+.title-line-1 {
+  font-size: 20px;
+  font-weight: 500;
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+}
+
+.title-line-2 {
+  font-size: 44px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+/* tighten hero */
+.hero {
+  padding-top: 30px;
+}
+
+/* LEFT ALIGN TARIFFS BACK */
+.tariffs {
+  align-items: flex-start !important;
+}
+
+.tariff {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.hero {
+  text-align: left !important;
+}
+
+h1 {
+  text-align: left !important;
+}
+
+.hero-sub {
+  text-align: left !important;
+  margin-left: 0 !important;
+}
+
+/* HERO SCRIPT STYLE */
+.hero {
+  padding-top: 42px !important;
+}
+
+h1 {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  margin: 0 0 20px !important;
+  max-width: 720px !important;
+  text-align: left !important;
+  line-height: .92 !important;
+}
+
+.brand-title-line,
+.main-title-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.brand-title-line {
+  margin-bottom: 2px;
+}
+
+.hero-word {
+  display: inline-block;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.hero-word-bold {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif !important;
+  font-weight: 780 !important;
+  letter-spacing: -0.065em !important;
+}
+
+.hero-word-script {
+  font-family: "Segoe Script", "Monotype Corsiva", "Apple Chancery", "Brush Script MT", cursive !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.055em !important;
+  color: #a9c3ff !important;
+  margin-left: 2px;
+}
+
+.brand-title-line .hero-word-bold,
+.brand-title-line .hero-word-script {
+  font-size: clamp(44px, 12vw, 72px) !important;
+}
+
+.main-title-line .hero-word-bold,
+.main-title-line .hero-word-script {
+  font-size: clamp(44px, 12vw, 72px) !important;
+}
+
+.main-title-line .hero-word-script {
+  margin-left: 10px;
+}
+
+.hero-sub {
+  margin-top: 0 !important;
+  max-width: 680px !important;
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  letter-spacing: -0.015em;
+  color: rgba(232,240,255,.76) !important;
+}
+
+@media (max-width: 420px) {
+  h1 {
+    gap: 12px !important;
+  }
+
+  .brand-title-line .hero-word-bold,
+  .brand-title-line .hero-word-script,
+  .main-title-line .hero-word-bold,
+  .main-title-line .hero-word-script {
+    font-size: clamp(38px, 12vw, 48px) !important;
+  }
+
+  .main-title-line .hero-word-script {
+    margin-left: 4px;
+  }
+
+  .hero-sub {
+    font-size: 15px !important;
+  }
+}
+
+/* MATCH REFERENCE STYLE + SMALLER SIZE */
+
+.hero-word-bold {
+  font-weight: 800 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.hero-word-script {
+  font-family: "Georgia", "Times New Roman", serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: #9fbaff !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* reduce size */
+.brand-title-line .hero-word-bold,
+.brand-title-line .hero-word-script,
+.main-title-line .hero-word-bold,
+.main-title-line .hero-word-script {
+  font-size: clamp(34px, 7vw, 52px) !important;
+}
+
+/* spacing */
+h1 {
+  gap: 10px !important;
+}
+
+.hero-sub {
+  font-size: 15px !important;
+  max-width: 560px !important;
+}
+
+/* REAL FONTS */
+.hero-word-bold {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+.hero-word-script {
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-weight: 500 !important;
+  color: #9fbaff !important;
+}
+
+/* CENTER LAYOUT FIX */
+
+/* center hero text */
+.hero {
+  text-align: center !important;
+}
+
+h1 {
+  text-align: center !important;
+  align-items: center !important;
+}
+
+.hero-sub {
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* center tariff cards but keep inner text left */
+.tariffs {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 14px;
+}
+
+.tariff {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto !important;
+}
+
+/* keep content left inside */
+.tariff * {
+  text-align: left !important;
+}
+
+/* LIGHTER CARDS */
+.tariff {
+  background: rgba(255,255,255,0.08) !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.tariff.featured {
+  background: rgba(255,255,255,0.12) !important;
+}
+
+/* CARDS SLIGHTLY DARKER + NO GRADIENT */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(255,255,255,0.10) !important;
+  box-shadow: none !important;
+}
+
+/* remove any gradient from featured */
+.tariff.featured {
+  background: rgba(255,255,255,0.06) !important;
+}
+
+/* SOLID DARK CARDS */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #111827 !important; /* solid dark */
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* remove any transparency/gradient leftovers */
+.tariff::before,
+.tariff.featured::before,
+.band::before,
+.final-cta::before {
+  display: none !important;
+}
+
+/* WARMER DARK CARDS */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #0f172a !important; /* slightly warmer */
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* EVEN WARMER CARDS */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #111827 !important; /* warmer + slightly neutral */
+  border-color: rgba(255,255,255,0.07) !important;
+}
+
+/* MUCH WARMER CARDS */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #1a1b14 !important; /* warm dark (olive/brown tone) */
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* DESIGNER PICK: balanced warm-dark cards */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #151821 !important; /* теплый графит, без синевы и без коричневой грязи */
+  border-color: rgba(255,255,255,0.075) !important;
+}
+
+/* small labels inside cards */
+.tariff-label,
+.band-label {
+  background: rgba(255,255,255,0.055) !important;
+  border-color: rgba(255,255,255,0.09) !important;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Playfair+Display:ital,wght@0,400;1,500&amp;display=swap" rel="stylesheet"/></head>
 <body>
-  <div class="app">
-
-    <section class="hero">
-      <div class="hero-topline">
-        <div class="brand">
-          <div class="brand-mark">KC</div>
-          <div class="brand-text">
-            <div class="brand-title">KantClub</div>
-            <div class="brand-sub">закрытая среда монтажёров</div>
-          </div>
-        </div>
-        <div class="top-pill">доступ через Tribute</div>
-      </div>
-
-      <div class="eyebrow">
-        <span class="eyebrow-dot"></span>
-        Система обучения
-      </div>
-
-      <h1>Среда, где монтаж превращается <span class="title-accent">в клиентов</span></h1>
-
-      <p class="hero-sub">
-        KantClub — закрытый клуб для монтажёров, которые хотят не просто смотреть уроки, а <strong>усиливать навык, работать в командах, находить клиентов и расти в доходе.</strong>
-      </p>
-
-      <div class="hero-proof">
-        <div class="proof-item">
-          <span class="proof-big">Навык</span>
-          <span class="proof-text">Reels, motion, For Beginners и другое</span>
-        </div>
-        <div class="proof-item">
-          <span class="proof-big">Клиенты</span>
-          <span class="proof-text">упаковка, первые сообщения, продажи и рост чека</span>
-        </div>
-      </div>
-
-      <div class="hero-note">
-        <span><strong>Лучший вход — на 3 месяца:</strong> этого достаточно, чтобы не просто осмотреться, а пройти первые действия, попасть в «Поток» и начать двигаться к результату.</span>
-      </div>
-
-      <div class="tariffs" id="tariffs">
-        <a href="https://web.tribute.tg/s/TQh" class="tariff">
-          <div class="tariff-row">
-            <div class="tariff-label">1 месяц</div>
-            <div class="tariff-mini">быстрый вход</div>
-          </div>
-          <h3 class="tariff-title">Старт</h3>
-          <p class="tariff-sub">
+<div class="app">
+<section class="hero">
+<h1>
+<span class="brand-title-line">
+<span class="hero-word hero-word-bold">Kant</span><span class="hero-word hero-word-script">Club</span>
+</span>
+<span class="main-title-line">
+<span class="hero-word hero-word-bold">твоя среда</span><span class="hero-word hero-word-script">роста</span>
+</span>
+</h1>
+<p class="hero-sub">Закрытый клуб для монтажёров, которые хотят не просто смотреть уроки, а усиливать навык, работать в командах, находить клиентов и расти в доходе.</p>
+<div class="tariffs" id="tariffs">
+<a class="tariff" data-tribute-url="https://web.tribute.tg/s/TQh" href="#confirmAccess">
+<div class="tariff-row">
+<div class="tariff-label">1 месяц</div>
+<div class="tariff-mini">быстрый вход</div>
+</div>
+<h3 class="tariff-title">Старт</h3>
+<p class="tariff-sub">
             Зайти, посмотреть систему и понять, насколько клуб попадает в вашу задачу.
           </p>
-          <div class="price-line">
-            <div class="price">1490 ₽</div>
-            <div class="price-note">минимальный формат доступа</div>
-          </div>
-
-          <div class="list">
-            <div class="list-item"><span class="dot"></span><span><strong>Быстрый вход</strong> в закрытые материалы</span></div>
-            <div class="list-item"><span class="dot"></span><span>Можно осмотреться без долгого обязательства</span></div>
-            <div class="list-item"><span class="dot"></span><span>Подойдёт, если пока просто хотите попробовать</span></div>
-          </div>
-
-          <span class="btn">Выбрать</span>
-        </a>
-
-        <a href="https://web.tribute.tg/s/TQh" class="tariff featured">
-          <div class="tariff-row">
-            <div class="tariff-label hot">3 месяца</div>
-            <div class="tariff-mini">с Потоком</div>
-          </div>
-          <h3 class="tariff-title">Выйти к клиентам</h3>
-          <p class="tariff-sub">
-           Оптимальный формат, если цель — начать двигаться к клиентам и доходу.
+<div class="price-line">
+<div class="price">1490 ₽</div>
+<div class="price-note">минимальный формат доступа</div>
+</div>
+<div class="list">
+<div class="list-item"><span class="dot"></span><span><strong>Быстрый вход</strong> в закрытые материалы</span></div>
+<div class="list-item"><span class="dot"></span><span>Можно осмотреться без долгого обязательства</span></div>
+<div class="list-item"><span class="dot"></span><span>Подойдёт, если пока просто хотите попробовать</span></div>
+</div>
+<span class="btn">Выбрать</span>
+</a>
+<a class="tariff featured" data-tribute-url="https://web.tribute.tg/s/TQh" href="#confirmAccess">
+<div class="tariff-row">
+<div class="tariff-label hot">3 месяца</div>
+<div class="tariff-mini">с Потоком</div>
+</div>
+<h3 class="tariff-title">Выйти к клиентам</h3>
+<p class="tariff-sub">
+           Оптимальный формат, если цель — не просто посмотреть клуб изнутри, а реально начать двигаться к клиентам и доходу.
           </p>
-          <div class="price-line">
-            <div class="price">3990 ₽</div>
-            <div class="price-note">с доступом к «Потоку»</div>
-          </div>
-
-          <div class="list">
-            <div class="list-item"><span class="dot"></span><span><strong>Лучший баланс</strong> времени и вовлечения</span></div>
-            <div class="list-item"><span class="dot"></span><span>Нетворкинг «Поток» и движение в группе</span></div>
-            <div class="list-item"><span class="dot"></span><span>Персональные разборы от Kant</span></div>
-          </div>
-
-          <span class="btn btn-primary">Выбрать</span>
-        </a>
-
-        <a href="https://web.tribute.tg/s/TQh" class="tariff">
-          <div class="tariff-row">
-            <div class="tariff-label">1 год</div>
-            <div class="tariff-mini">в долгую</div>
-          </div>
-          <h3 class="tariff-title">Стать частью среды</h3>
-          <p class="tariff-sub">
+<div class="price-line">
+<div class="price">3990 ₽</div>
+<div class="price-note">с доступом к «Потоку»</div>
+</div>
+<div class="list">
+<div class="list-item"><span class="dot"></span><span><strong>Лучший баланс</strong> времени и вовлечения</span></div>
+<div class="list-item"><span class="dot"></span><span>Нетворкинг «Поток» и движение в группе</span></div>
+<div class="list-item"><span class="dot"></span><span>Персональные разборы от Kant</span></div>
+</div>
+<span class="btn btn-primary">Выбрать</span>
+</a>
+<a class="tariff" data-tribute-url="https://web.tribute.tg/s/TQh" href="#confirmAccess">
+<div class="tariff-row">
+<div class="tariff-label">1 год</div>
+<div class="tariff-mini">в долгую</div>
+</div>
+<h3 class="tariff-title">Стать частью среды</h3>
+<p class="tariff-sub">
             Для тех, кто смотрит на монтаж как долгосрочную карьеру, а не разовую попытку.
           </p>
-          <div class="price-line">
-            <div class="price">9990 ₽</div>
-            <div class="price-note">долгий горизонт роста</div>
-          </div>
-
-          <div class="list">
-            <div class="list-item"><span class="dot"></span><span><strong>Серьёзный вход</strong> в профессию и окружение</span></div>
-            <div class="list-item"><span class="dot"></span><span>Постоянный доступ к системе и обновлениям</span></div>
-            <div class="list-item"><span class="dot"></span><span>Поддержка лидеров и рост внутри клуба</span></div>
-          </div>
-
-          <span class="btn">Выбрать</span>
-        </a>
-      </div>
-
-
-
-      <div class="legal-note">
-        Оплачивая доступ, вы соглашаетесь с <a href="#" data-modal="terms">условиями доступа</a> и <a href="#" data-modal="privacy">политикой конфиденциальности</a>.<br>
-        Подписка может продлеваться автоматически через Tribute. Отключить автосписание можно в интерфейсе Tribute.
-      </div>
-
-      <div class="conversion-strip">
-        <div class="strip-card">
-          <strong>5 направлений</strong>
-          <span>навык, упаковка, клиенты, деньги и окружение</span>
-        </div>
-        <div class="strip-card">
-          <strong>не “на потом”</strong>
-          <span>клуб собран под действия, а не под склад уроков</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <div class="section-kicker">что внутри</div>
-          <h2 class="section-title">Одна система. <span class="soft">Пять точек роста.</span></h2>
-        </div>
-      </div>
-      <p class="section-desc">
+<div class="price-line">
+<div class="price">9990 ₽</div>
+<div class="price-note">долгий горизонт роста</div>
+</div>
+<div class="list">
+<div class="list-item"><span class="dot"></span><span><strong>Серьёзный вход</strong> в профессию и окружение</span></div>
+<div class="list-item"><span class="dot"></span><span>Постоянный доступ к системе и обновлениям</span></div>
+<div class="list-item"><span class="dot"></span><span>Поддержка лидеров и рост внутри клуба</span></div>
+</div>
+<span class="btn">Выбрать</span>
+</a>
+</div>
+</section>
+<section class="section">
+<div class="section-head">
+<div>
+<div class="section-kicker">что внутри</div>
+<h2 class="section-title">Одна система. <span class="soft">Пять точек роста.</span></h2>
+</div>
+</div>
+<p class="section-desc">
         Мы не упираемся только в монтаж. Сильный специалист растёт сразу в нескольких местах: навык, подача, продажи, клиенты и окружение.
       </p>
-
-      <div class="system-wrap">
-        <div class="system-item">
-          <div class="system-number">01</div>
-          <div class="system-content">
-            <h3 class="system-title">Навык</h3>
-            <div class="system-text">Reels, motion design, база программ и практические материалы, которые помогают расти в навыках.</div>
-          </div>
-        </div>
-
-        <div class="system-item">
-          <div class="system-number">02</div>
-          <div class="system-content">
-            <h3 class="system-title">Упаковка себя</h3>
-            <div class="system-text">Профиль, портфолио, позиционирование и подача себя не как “человека, который монтирует”, а как <strong>специалиста.</strong></div>
-          </div>
-        </div>
-
-        <div class="system-item">
-          <div class="system-number">03</div>
-          <div class="system-content">
-            <h3 class="system-title">Клиенты</h3>
-            <div class="system-text">Где искать, как писать, как общаться, как не сливать диалог и как доводить человека до оплаты.</div>
-          </div>
-        </div>
-
-        <div class="system-item">
-          <div class="system-number">04</div>
-          <div class="system-content">
-            <h3 class="system-title">Деньги</h3>
-            <div class="system-text">Рост чека, уверенность в продаже себя, работа с возражениями и постепенное увеличение дохода.</div>
-          </div>
-        </div>
-
-        <div class="system-item">
-          <div class="system-number">05</div>
-          <div class="system-content">
-            <h3 class="system-title">Окружение</h3>
-            <div class="system-text">Люди, которые тоже двигаются, делают работы, ищут клиентов и не дают вам снова пропасть “на потом”.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="band">
-        <div class="band-label">доступ с тарифа на 3 месяца</div>
-        <div class="band-title-row">
-          <h2 class="section-title">Нетворкинг «Поток»</h2>
-        </div>
-        <p class="band-text">
+<div class="system-wrap">
+<div class="system-item">
+<div class="system-number">01</div>
+<div class="system-content">
+<h3 class="system-title">Навык</h3>
+<div class="system-text">Reels, motion design, база программ и практические материалы, которые помогают расти в навыках.</div>
+</div>
+</div>
+<div class="system-item">
+<div class="system-number">02</div>
+<div class="system-content">
+<h3 class="system-title">Упаковка себя</h3>
+<div class="system-text">Профиль, портфолио, позиционирование и подача себя не как “человека, который монтирует”, а как <strong>специалиста.</strong></div>
+</div>
+</div>
+<div class="system-item">
+<div class="system-number">03</div>
+<div class="system-content">
+<h3 class="system-title">Клиенты</h3>
+<div class="system-text">Где искать, как писать, как общаться, как не сливать диалог и как доводить человека до оплаты.</div>
+</div>
+</div>
+<div class="system-item">
+<div class="system-number">04</div>
+<div class="system-content">
+<h3 class="system-title">Деньги</h3>
+<div class="system-text">Рост чека, уверенность в продаже себя, работа с возражениями и постепенное увеличение дохода.</div>
+</div>
+</div>
+<div class="system-item">
+<div class="system-number">05</div>
+<div class="system-content">
+<h3 class="system-title">Окружение</h3>
+<div class="system-text">Люди, которые тоже двигаются, делают работы, ищут клиентов и не дают вам снова пропасть “на потом”.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="band">
+<div class="band-label">доступ с тарифа на 3 месяца</div>
+<div class="band-title-row">
+<h2 class="section-title">Нетворкинг «Поток»</h2>
+</div>
+<p class="band-text">
           Небольшие группы, где участники примерно на одном уровне. У каждой группы есть общий фокус, чат, созвоны, отчёты и лидер, который помогает не развалиться после первой мотивации.
         </p>
-
-        <div class="band-points">
-          <div class="band-point">
-            <div class="band-point-num">01</div>
-            <div>
-              <div class="band-point-title">Не общий шумный чат</div>
-              <div class="band-point-text">А небольшая рабочая группа, где видно прогресс каждого.</div>
-            </div>
-          </div>
-          <div class="band-point">
-            <div class="band-point-num">02</div>
-            <div>
-              <div class="band-point-title">Созвоны и разборы</div>
-              <div class="band-point-text">Можно получать обратную связь, а не просто молча смотреть материалы.</div>
-            </div>
-          </div>
-          <div class="band-point">
-            <div class="band-point-num">03</div>
-            <div>
-              <div class="band-point-title">Один лидер на каждый Поток</div>
-              <div class="band-point-text">Лидер ведёт отчёты, организует группу и помогает держать фокус.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-kicker">ответы</div>
-      <h2 class="section-title">Частые вопросы</h2>
-      <p class="section-desc">Коротко по главным сомнениям перед входом.</p>
-
-      <div class="faq-shell">
-        <details open>
-          <summary>
+<div class="band-points">
+<div class="band-point">
+<div class="band-point-num">01</div>
+<div>
+<div class="band-point-title">Не общий шумный чат</div>
+<div class="band-point-text">А небольшая рабочая группа, где видно прогресс каждого.</div>
+</div>
+</div>
+<div class="band-point">
+<div class="band-point-num">02</div>
+<div>
+<div class="band-point-title">Созвоны и разборы</div>
+<div class="band-point-text">Можно получать обратную связь, а не просто молча смотреть материалы.</div>
+</div>
+</div>
+<div class="band-point">
+<div class="band-point-num">03</div>
+<div>
+<div class="band-point-title">Один лидер на каждый Поток</div>
+<div class="band-point-text">Лидер ведёт отчёты, организует группу и помогает держать фокус.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="section-kicker">ответы</div>
+<h2 class="section-title">Частые вопросы</h2>
+<p class="section-desc">Коротко по главным сомнениям перед входом.</p>
+<div class="faq-shell">
+<details open="">
+<summary>
             Это только про монтаж?
             <span class="faq-plus"></span>
-          </summary>
-          <div class="faq-body">
+</summary>
+<div class="faq-body">
             Нет. Монтаж — база, но дальше важнее упаковка, портфолио, клиенты, общение, продажи и рост дохода. Клуб как раз про связку навыка и рынка.
           </div>
-        </details>
-
-        <details>
-          <summary>
+</details>
+<details>
+<summary>
             Подойдёт, если я ещё не на сильном уровне?
             <span class="faq-plus"></span>
-          </summary>
-          <div class="faq-body">
+</summary>
+<div class="faq-body">
             Да. Есть материалы для начинающих и для тех, кто уже что-то умеет. Потоки формируются так, чтобы человек попадал в понятное для себя окружение.
           </div>
-        </details>
-
-        <details>
-          <summary>
+</details>
+<details>
+<summary>
             Что будет после оплаты?
             <span class="faq-plus"></span>
-          </summary>
-          <div class="faq-body">
+</summary>
+<div class="faq-body">
             Оплата проходит через Tribute. После оплаты вы получаете доступ к клубу и можете сразу заходить в материалы, чаты и доступные форматы.
           </div>
-        </details>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="final-cta">
-        <h2 class="final-title">Выберите доступ и заходите внутрь</h2>
-        <p class="final-text">
+</details>
+</div>
+</section>
+<section class="section">
+<div class="final-cta">
+<h2 class="final-title">Выберите доступ и заходите внутрь</h2>
+<p class="final-text">
           Если хотите просто сохранить материалы “когда-нибудь” — можно не торопиться. Если хотите двигаться к клиентам и доходу — начинайте с тарифа, где есть среда и разборы.
         </p>
-        <a href="#tariffs" class="btn btn-primary">Перейти к тарифам</a>
-      </div>
-    </section>
-
-  </div>
-
-
-
-  <div class="legal-modal" id="termsModal" aria-hidden="true">
-    <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="termsTitle">
-      <div class="legal-head">
-        <h3 class="legal-title" id="termsTitle">Условия доступа</h3>
-        <button class="legal-close" type="button" data-close-modal>×</button>
-      </div>
-      <div class="legal-body">
-        <p>Получая доступ к KantClub, вы соглашаетесь с указанными условиями.</p>
-        <p><strong>1. Предмет</strong><br>KantClub предоставляет доступ к обучающим материалам, чатам и дополнительным форматам внутри закрытого сообщества.</p>
-        <p><strong>2. Доступ</strong><br>Доступ предоставляется после успешной оплаты через сторонний сервис Tribute на выбранный срок.<br>По истечении срока доступ автоматически прекращается, если не продлён.</p>
-        <p><strong>3. Формат</strong><br>Материалы предоставляются в цифровом виде. Результаты зависят от действий пользователя и не гарантируются.</p>
-        <p><strong>4. Возвраты</strong><br>Возвраты не предусмотрены после получения доступа, так как услуга считается оказанной с момента открытия материалов.</p>
-        <p><strong>5. Использование</strong><br>Доступ предоставляется только для личного использования.<br>Запрещается передавать доступ третьим лицам, распространять материалы или перепродавать их.</p>
-        <p><strong>6. Ограничение доступа</strong><br>Администрация вправе ограничить доступ в случае нарушения правил или злоупотребления системой.</p>
-        <p><strong>7. Изменения</strong><br>Условия могут обновляться. Актуальная версия всегда доступна в мини-приложении.</p>
-        <p><strong>8. Подписка и автосписание</strong><br>Оплата доступа может оформляться в формате подписки через сервис Tribute.<br>В этом случае средства списываются автоматически за каждый следующий период (месяц / 3 месяца / год) до момента отмены.<br>Пользователь может отключить автосписание самостоятельно через интерфейс Tribute.<br>Возвраты за уже начавшийся период не предусмотрены.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="legal-modal" id="privacyModal" aria-hidden="true">
-    <div class="legal-card" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
-      <div class="legal-head">
-        <h3 class="legal-title" id="privacyTitle">Политика конфиденциальности</h3>
-        <button class="legal-close" type="button" data-close-modal>×</button>
-      </div>
-      <div class="legal-body">
-        <p>Мы уважаем вашу конфиденциальность и используем только необходимый минимум данных.</p>
-        <p><strong>1. Какие данные собираются</strong><br>— Telegram ID<br>— Имя пользователя, если доступно<br>— Данные, необходимые для предоставления доступа</p>
-        <p><strong>2. Как используются данные</strong><br>Данные используются исключительно для:<br>— предоставления доступа к KantClub<br>— работы бота и мини-приложения<br>— связи с пользователем при необходимости</p>
-        <p><strong>3. Передача данных</strong><br>Данные не передаются третьим лицам, за исключением сервисов, необходимых для работы оплаты, например Tribute.</p>
-        <p><strong>4. Хранение</strong><br>Данные хранятся в объёме, необходимом для работы сервиса.</p>
-        <p><strong>5. Безопасность</strong><br>Мы принимаем разумные меры для защиты данных, однако не можем гарантировать абсолютную безопасность.</p>
-        <p><strong>6. Согласие</strong><br>Используя сервис, вы соглашаетесь с данной политикой.</p>
-      </div>
-    </div>
-  </div>
-
-
-  <script>
+<a class="btn btn-primary" href="#tariffs">Перейти к тарифам</a>
+</div>
+</section>
+</div>
+<div aria-hidden="true" class="access-confirm-modal" id="accessConfirmModal">
+<div aria-labelledby="accessConfirmTitle" aria-modal="true" class="access-confirm-card" role="dialog">
+<button class="access-confirm-close" data-close-access-confirm="" type="button">×</button>
+<h3 class="access-confirm-title" id="accessConfirmTitle">Перед оплатой</h3>
+<p class="access-confirm-text">
+      Нажимая «Перейти к оплате», вы подтверждаете, что ознакомились с условиями доступа и политикой конфиденциальности.
+      Оплата и продление подписки проходят через Tribute.
+    </p>
+<button class="access-confirm-btn" id="accessConfirmPay" type="button">Перейти к оплате</button>
+<div class="access-confirm-links">
+<a data-modal="terms" href="#">Условия доступа</a>
+<span>·</span>
+<a data-modal="privacy" href="#">Политика конфиденциальности</a>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="legal-modal" id="termsModal">
+<div aria-labelledby="termsTitle" aria-modal="true" class="legal-card" role="dialog">
+<div class="legal-head">
+<h3 class="legal-title" id="termsTitle">Условия доступа</h3>
+<button class="legal-close" data-close-modal="" type="button">×</button>
+</div>
+<div class="legal-body">
+<p>Получая доступ к KantClub, вы соглашаетесь с указанными условиями.</p>
+<p><strong>1. Предмет</strong><br/>KantClub предоставляет доступ к обучающим материалам, чатам и дополнительным форматам внутри закрытого сообщества.</p>
+<p><strong>2. Доступ</strong><br/>Доступ предоставляется после успешной оплаты через сторонний сервис Tribute на выбранный срок.<br/>По истечении срока доступ автоматически прекращается, если не продлён.</p>
+<p><strong>3. Формат</strong><br/>Материалы предоставляются в цифровом виде. Результаты зависят от действий пользователя и не гарантируются.</p>
+<p><strong>4. Возвраты</strong><br/>Возвраты не предусмотрены после получения доступа, так как услуга считается оказанной с момента открытия материалов.</p>
+<p><strong>5. Использование</strong><br/>Доступ предоставляется только для личного использования.<br/>Запрещается передавать доступ третьим лицам, распространять материалы или перепродавать их.</p>
+<p><strong>6. Ограничение доступа</strong><br/>Администрация вправе ограничить доступ в случае нарушения правил или злоупотребления системой.</p>
+<p><strong>7. Изменения</strong><br/>Условия могут обновляться. Актуальная версия всегда доступна в мини-приложении.</p>
+<p><strong>8. Подписка и автосписание</strong><br/>Оплата доступа может оформляться в формате подписки через сервис Tribute.<br/>В этом случае средства списываются автоматически за каждый следующий период (месяц / 3 месяца / год) до момента отмены.<br/>Пользователь может отключить автосписание самостоятельно через интерфейс Tribute.<br/>Возвраты за уже начавшийся период не предусмотрены.</p>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="legal-modal" id="privacyModal">
+<div aria-labelledby="privacyTitle" aria-modal="true" class="legal-card" role="dialog">
+<div class="legal-head">
+<h3 class="legal-title" id="privacyTitle">Политика конфиденциальности</h3>
+<button class="legal-close" data-close-modal="" type="button">×</button>
+</div>
+<div class="legal-body">
+<p>Мы уважаем вашу конфиденциальность и используем только необходимый минимум данных.</p>
+<p><strong>1. Какие данные собираются</strong><br/>— Telegram ID<br/>— Имя пользователя, если доступно<br/>— Данные, необходимые для предоставления доступа</p>
+<p><strong>2. Как используются данные</strong><br/>Данные используются исключительно для:<br/>— предоставления доступа к KantClub<br/>— работы бота и мини-приложения<br/>— связи с пользователем при необходимости</p>
+<p><strong>3. Передача данных</strong><br/>Данные не передаются третьим лицам, за исключением сервисов, необходимых для работы оплаты, например Tribute.</p>
+<p><strong>4. Хранение</strong><br/>Данные хранятся в объёме, необходимом для работы сервиса.</p>
+<p><strong>5. Безопасность</strong><br/>Мы принимаем разумные меры для защиты данных, однако не можем гарантировать абсолютную безопасность.</p>
+<p><strong>6. Согласие</strong><br/>Используя сервис, вы соглашаетесь с данной политикой.</p>
+</div>
+</div>
+</div>
+<script>
     const openModal = (type) => {
       const modal = document.getElementById(type === 'terms' ? 'termsModal' : 'privacyModal');
       if (!modal) return;
@@ -965,6 +1591,79 @@
       Telegram.WebApp.ready();
       Telegram.WebApp.expand();
     }
-  </script>
-</body>
+  
+
+    let pendingTributeUrl = "";
+
+    const accessConfirmModal = document.getElementById("accessConfirmModal");
+    const accessConfirmCheckbox = document.getElementById("accessConfirmCheckbox");
+    const accessConfirmPay = document.getElementById("accessConfirmPay");
+
+    const openAccessConfirm = (url) => {
+      pendingTributeUrl = url || "";
+      if (!accessConfirmModal) return;
+      if (accessConfirmCheckbox) accessConfirmCheckbox.checked = false;
+      
+      accessConfirmModal.classList.add("is-open");
+      accessConfirmModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeAccessConfirm = () => {
+      if (!accessConfirmModal) return;
+      accessConfirmModal.classList.remove("is-open");
+      accessConfirmModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    document.querySelectorAll("a.tariff[data-tribute-url]").forEach((tariff) => {
+      tariff.addEventListener("click", (event) => {
+        event.preventDefault();
+        openAccessConfirm(tariff.dataset.tributeUrl);
+      });
+    });
+
+    document.querySelectorAll("[data-close-access-confirm]").forEach((button) => {
+      button.addEventListener("click", closeAccessConfirm);
+    });
+
+    if (accessConfirmModal) {
+      accessConfirmModal.addEventListener("click", (event) => {
+        if (event.target === accessConfirmModal) closeAccessConfirm();
+      });
+    }
+
+    if (accessConfirmPay) {
+      
+
+      accessConfirmPay.addEventListener("click", () => {
+        if (!pendingTributeUrl) return;
+        window.location.href = pendingTributeUrl;
+        window.location.href = pendingTributeUrl;
+      });
+    }
+</script>
+<script>
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const max = document.body.scrollHeight - window.innerHeight;
+  const progress = scrollY / max;
+
+  // smoother interpolation
+  const ease = progress * 0.6;
+
+  const leftBase = 20 + ease * 40;
+  const rightBase = 70 - ease * 40;
+
+  const left = `rgb(${leftBase}, ${leftBase+8}, ${leftBase+16})`;
+  const mid = `rgb(${28 + ease*5}, ${36 + ease*5}, ${46 + ease*5})`;
+  const right = `rgb(${rightBase}, ${rightBase+8}, ${rightBase+16})`;
+
+  document.body.style.setProperty(
+    "background",
+    `linear-gradient(90deg, ${left} 0%, ${mid} 50%, ${right} 100%)`,
+    "important"
+  );
+});
+</script></body>
 </html>
