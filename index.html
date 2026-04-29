@@ -1294,20 +1294,412 @@ h1 {
   background: rgba(255,255,255,0.055) !important;
   border-color: rgba(255,255,255,0.09) !important;
 }
+
+/* WARM YELLOW ACCENT STYLE */
+
+/* main cards slightly warm neutral */
+.tariff,
+.tariff.featured,
+.band,
+.final-cta {
+  background: #16171a !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* labels (like your screenshot) */
+.tariff-label,
+.band-label {
+  background: rgba(255, 214, 102, 0.08) !important;
+  color: #f4d27a !important;
+  border: 1px solid rgba(255, 214, 102, 0.18) !important;
+}
+
+/* subtle accent for dots */
+.dot {
+  background: #f4d27a !important;
+}
+
+/* slightly warmer text tone */
+.hero-sub,
+.tariff-sub,
+.section-desc {
+  color: rgba(255, 235, 200, 0.75) !important;
+}
+
+/* REMOVE GLOBAL YELLOW */
+.tariff-label,
+.band-label,
+.dot {
+  background: rgba(255,255,255,0.05) !important;
+  color: #fff !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* GRADIENT ACCENT ONLY ON KEY WORDS */
+strong {
+  background: linear-gradient(90deg, #f4d27a, #e6b85c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-weight: 600;
+}
+
+/* optional subtle accent for title word */
+.hero-word-script {
+  background: linear-gradient(90deg, #f4d27a, #e6b85c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* REMOVE GRADIENT FROM BODY TEXT */
+strong {
+  color: #ffffff !important;
+  background: none !important;
+}
+
+/* KEEP GRADIENT ONLY IN HEADINGS */
+.hero-word-script {
+  background: linear-gradient(90deg, #f4d27a, #e6b85c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* optional for tariff titles */
+.tariff-title span,
+.section-title span {
+  background: linear-gradient(90deg, #f4d27a, #e6b85c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* HEADER EXACT STYLE */
+h1 {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  line-height: 0.95;
+  margin-bottom: 18px;
+}
+
+.line1, .line2 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* bold part */
+.bold {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+/* script part */
+.script {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #9fbaff;
+  letter-spacing: -0.03em;
+}
+
+/* sizes */
+.line1 .bold,
+.line1 .script {
+  font-size: clamp(38px, 6vw, 56px);
+}
+
+.line2 .bold,
+.line2 .script {
+  font-size: clamp(44px, 7vw, 64px);
+}
+
+/* uppercase only for bold second line */
+.line2 .bold {
+  text-transform: uppercase;
+}
+
+/* BUTTON YELLOW-BLUE GRADIENT */
+.btn-primary {
+  background: linear-gradient(90deg, #f4d27a 0%, #79bdff 100%) !important;
+  color: #0b0f14 !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+
+/* WHITE BUTTONS */
+.btn-primary {
+  background: #ffffff !important;
+  color: #0b0f14 !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+
+/* SUBTLE SHADOW BUTTON */
+.btn-primary {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25), 
+              0 1px 0 rgba(255,255,255,0.6) inset !important;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.3),
+              0 1px 0 rgba(255,255,255,0.6) inset !important;
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2),
+              0 1px 0 rgba(255,255,255,0.6) inset !important;
+}
+
+/* NORMAL TEXT COLOR (NO GRADIENT) */
+.hero-sub,
+.section-desc,
+.band-text,
+.final-text,
+.tariff-sub {
+  color: rgba(232,240,255,0.72) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+}
+
+/* REMOVE CAPS FROM TITLE */
+.line2 .bold {
+  text-transform: none !important;
+}
+
+/* WARM ACCENT TEXT */
+.accent-warm {
+  background: linear-gradient(90deg, #e8d3a3, #d6b97a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* SOFT WARM ACCENT (LESS BRIGHT) */
+.accent-warm {
+  background: linear-gradient(90deg, #d6c7a1, #bfa978);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* SOFT WARM ACCENT USAGE */
+.accent-warm {
+  background: linear-gradient(90deg, #d6c7a1, #bfa978);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* subtle highlight for tariff titles */
+.tariff-title span {
+  color: #d9c79a;
+}
+
+/* small highlight inside lists */
+.list-item .highlight {
+  color: #d9c79a;
+}
+
+/* FIX: no warm accent inside tariffs */
+.tariff .accent-warm,
+.tariff-title span,
+.list-item .highlight {
+  background: none !important;
+  color: inherit !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+}
+
+/* Keep tariff important words readable */
+.tariff strong {
+  color: #ffffff !important;
+  background: none !important;
+}
+
+/* Warm accents only outside tariff cards */
+.hero-sub .accent-warm,
+.section-desc .accent-warm,
+.band-text .accent-warm,
+.final-text .accent-warm,
+.faq-body .accent-warm {
+  background: linear-gradient(90deg, #d6c7a1, #bfa978);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* SUBTLE YELLOW IN TARIFFS */
+.tariff strong {
+  background: linear-gradient(90deg, #d6c7a1, #bfa978);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+/* MODAL STYLING (PRE-CLICK PANEL) */
+.access-confirm-card {
+  background: #151821 !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6) !important;
+}
+
+.access-confirm-title {
+  font-weight: 700;
+}
+
+.access-confirm-btn {
+  background: #ffffff !important;
+  color: #0b0f14 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+}
+
+/* FIX TARIFF LIST VISIBILITY */
+.tariff .list {
+  display: grid !important;
+  gap: 10px !important;
+  margin-bottom: 16px !important;
+}
+
+.tariff .list-item {
+  display: flex !important;
+  gap: 10px !important;
+  align-items: flex-start !important;
+  color: rgba(238,244,255,0.78) !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.tariff .list-item span:last-child {
+  display: inline !important;
+  color: rgba(238,244,255,0.78) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.tariff .list-item b {
+  font-weight: 650 !important;
+  color: #d6c7a1 !important;
+}
+
+.tariff .dot {
+  width: 6px !important;
+  height: 6px !important;
+  min-width: 6px !important;
+  margin-top: 7px !important;
+  border-radius: 999px !important;
+  background: #d6c7a1 !important;
+  opacity: 1 !important;
+}
+
+/* FEATURED 3-MONTH TARIFF */
+.tariff.featured {
+  position: relative !important;
+  background:
+    linear-gradient(180deg, rgba(214,199,161,0.13), rgba(255,255,255,0.045)),
+    #171a22 !important;
+  border: 1px solid rgba(214,199,161,0.34) !important;
+  box-shadow:
+    0 18px 46px rgba(0,0,0,0.36),
+    inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+.tariff.featured::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  left: 18px !important;
+  right: 18px !important;
+  top: 0 !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(214,199,161,0.7), transparent) !important;
+}
+
+.tariff.featured .tariff-label {
+  background: rgba(214,199,161,0.12) !important;
+  border-color: rgba(214,199,161,0.28) !important;
+  color: #d6c7a1 !important;
+}
+
+.tariff.featured .tariff-title {
+  color: #ffffff !important;
+}
+
+.tariff.featured .btn-primary {
+  background: linear-gradient(135deg, #ffffff, #e9dfc8) !important;
+  color: #111318 !important;
+}
+
+/* normal tariffs calmer */
+.tariff:not(.featured) {
+  background: #151821 !important;
+  border-color: rgba(255,255,255,0.075) !important;
+}
+
+/* SAME COLOR AS 'ПОТОК' FOR NON-FEATURED */
+.tariff:not(.featured) {
+  background: #16171a !important;
+  border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* remove bold feel in list */
+.tariff .list-item span {
+  font-weight: 400 !important;
+}
+
+/* MOBILE-SAFE SCROLL GRADIENT */
+html {
+  min-height: 100%;
+  background: #141c2b !important;
+}
+
+body {
+  min-height: 100%;
+  background:
+    linear-gradient(
+      90deg,
+      var(--grad-left, rgb(20,28,42)) 0%,
+      var(--grad-mid, rgb(28,36,46)) 52%,
+      var(--grad-right, rgb(68,78,92)) 100%
+    ) !important;
+  background-attachment: fixed !important;
+  transition: background 0.12s linear;
+}
+
+body::before,
+body::after {
+  display: none !important;
+}
+
+/* MAKE 'твоя среда' SAME SIZE AS 'Kant' */
+.line2 .bold {
+  font-size: clamp(38px, 6vw, 56px) !important;
+  letter-spacing: -0.05em !important;
+}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Playfair+Display:ital,wght@0,400;1,500&amp;display=swap" rel="stylesheet"/></head>
 <body>
 <div class="app">
 <section class="hero">
 <h1>
-<span class="brand-title-line">
-<span class="hero-word hero-word-bold">Kant</span><span class="hero-word hero-word-script">Club</span>
+<span class="line1">
+<span class="bold">Kant</span><span class="script">Club</span>
 </span>
-<span class="main-title-line">
-<span class="hero-word hero-word-bold">твоя среда</span><span class="hero-word hero-word-script">роста</span>
+<span class="line2">
+<span class="bold">твоя среда</span><span class="script">роста</span>
 </span>
 </h1>
-<p class="hero-sub">Закрытый клуб для монтажёров, которые хотят не просто смотреть уроки, а усиливать навык, работать в командах, находить клиентов и расти в доходе.</p>
+<p class="hero-sub">Закрытый клуб для монтажёров, которые хотят не просто смотреть уроки, а <span class="accent-warm">усиливать навык</span>, работать в командах, <span class="accent-warm">находить клиентов</span> и расти в доходе.</p>
 <div class="tariffs" id="tariffs">
 <a class="tariff" data-tribute-url="https://web.tribute.tg/s/TQh" href="#confirmAccess">
 <div class="tariff-row">
@@ -1323,15 +1715,24 @@ h1 {
 <div class="price-note">минимальный формат доступа</div>
 </div>
 <div class="list">
-<div class="list-item"><span class="dot"></span><span><strong>Быстрый вход</strong> в закрытые материалы</span></div>
-<div class="list-item"><span class="dot"></span><span>Можно осмотреться без долгого обязательства</span></div>
-<div class="list-item"><span class="dot"></span><span>Подойдёт, если пока просто хотите попробовать</span></div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Быстрый вход в закрытые материалы</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Осмотреться без долгого обязательства</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Попробовать если пока не готовы заходить глубоко</span>
+</div>
 </div>
 <span class="btn">Выбрать</span>
 </a>
 <a class="tariff featured" data-tribute-url="https://web.tribute.tg/s/TQh" href="#confirmAccess">
 <div class="tariff-row">
-<div class="tariff-label hot">3 месяца</div>
+<div class="tariff-label hot">оптимальный вход</div>
 <div class="tariff-mini">с Потоком</div>
 </div>
 <h3 class="tariff-title">Выйти к клиентам</h3>
@@ -1343,9 +1744,18 @@ h1 {
 <div class="price-note">с доступом к «Потоку»</div>
 </div>
 <div class="list">
-<div class="list-item"><span class="dot"></span><span><strong>Лучший баланс</strong> времени и вовлечения</span></div>
-<div class="list-item"><span class="dot"></span><span>Нетворкинг «Поток» и движение в группе</span></div>
-<div class="list-item"><span class="dot"></span><span>Персональные разборы от Kant</span></div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Лучший баланс времени, среды и вовлечения</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Поток нетворкинг, группа и движение вместе</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Разборы обратная связь и помощь от Kant</span>
+</div>
 </div>
 <span class="btn btn-primary">Выбрать</span>
 </a>
@@ -1363,9 +1773,18 @@ h1 {
 <div class="price-note">долгий горизонт роста</div>
 </div>
 <div class="list">
-<div class="list-item"><span class="dot"></span><span><strong>Серьёзный вход</strong> в профессию и окружение</span></div>
-<div class="list-item"><span class="dot"></span><span>Постоянный доступ к системе и обновлениям</span></div>
-<div class="list-item"><span class="dot"></span><span>Поддержка лидеров и рост внутри клуба</span></div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Долгий доступ к системе, материалам и обновлениям</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Рост в среде без ограничения одним месяцем</span>
+</div>
+<div class="list-item">
+<span class="dot"></span>
+<span>Поддержка лидеров и участников клуба</span>
+</div>
 </div>
 <span class="btn">Выбрать</span>
 </a>
@@ -1375,12 +1794,10 @@ h1 {
 <div class="section-head">
 <div>
 <div class="section-kicker">что внутри</div>
-<h2 class="section-title">Одна система. <span class="soft">Пять точек роста.</span></h2>
+<h2 class="section-title">Одна система. Пять точек роста.</h2>
 </div>
 </div>
-<p class="section-desc">
-        Мы не упираемся только в монтаж. Сильный специалист растёт сразу в нескольких местах: навык, подача, продажи, клиенты и окружение.
-      </p>
+<p class="section-desc">Мы не упираемся только в монтаж. Сильный специалист растёт сразу в нескольких местах: <span class="accent-warm">навык, подача, продажи</span>, клиенты и окружение.</p>
 <div class="system-wrap">
 <div class="system-item">
 <div class="system-number">01</div>
@@ -1425,9 +1842,7 @@ h1 {
 <div class="band-title-row">
 <h2 class="section-title">Нетворкинг «Поток»</h2>
 </div>
-<p class="band-text">
-          Небольшие группы, где участники примерно на одном уровне. У каждой группы есть общий фокус, чат, созвоны, отчёты и лидер, который помогает не развалиться после первой мотивации.
-        </p>
+<p class="band-text">Небольшие группы, где участники примерно на одном уровне. У каждой группы есть общий фокус, чат, созвоны, отчёты и <span class="accent-warm">лидер, который помогает держать фокус</span>.</p>
 <div class="band-points">
 <div class="band-point">
 <div class="band-point-num">01</div>
@@ -1456,7 +1871,7 @@ h1 {
 <section class="section">
 <div class="section-kicker">ответы</div>
 <h2 class="section-title">Частые вопросы</h2>
-<p class="section-desc">Коротко по главным сомнениям перед входом.</p>
+<p class="section-desc">Мы не упираемся только в монтаж. Сильный специалист растёт сразу в нескольких местах: <span class="accent-warm">навык, подача, продажи</span>, клиенты и окружение.</p>
 <div class="faq-shell">
 <details open="">
 <summary>
@@ -1490,9 +1905,7 @@ h1 {
 <section class="section">
 <div class="final-cta">
 <h2 class="final-title">Выберите доступ и заходите внутрь</h2>
-<p class="final-text">
-          Если хотите просто сохранить материалы “когда-нибудь” — можно не торопиться. Если хотите двигаться к клиентам и доходу — начинайте с тарифа, где есть среда и разборы.
-        </p>
+<p class="final-text">Если хотите просто сохранить материалы “когда-нибудь” — можно не торопиться. Если хотите двигаться к <span class="accent-warm">клиентам и доходу</span> — начинайте с тарифа, где есть среда и разборы.</p>
 <a class="btn btn-primary" href="#tariffs">Перейти к тарифам</a>
 </div>
 </section>
@@ -1644,26 +2057,39 @@ h1 {
     }
 </script>
 <script>
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-  const max = document.body.scrollHeight - window.innerHeight;
-  const progress = scrollY / max;
+(function () {
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
 
-  // smoother interpolation
-  const ease = progress * 0.6;
+  function updateGradient() {
+    const doc = document.documentElement;
+    const scrollTop = window.pageYOffset || doc.scrollTop || document.body.scrollTop || 0;
+    const maxScroll = Math.max(1, doc.scrollHeight - window.innerHeight);
+    const progress = clamp(scrollTop / maxScroll, 0, 1);
 
-  const leftBase = 20 + ease * 40;
-  const rightBase = 70 - ease * 40;
+    const ease = progress * progress * (3 - 2 * progress);
 
-  const left = `rgb(${leftBase}, ${leftBase+8}, ${leftBase+16})`;
-  const mid = `rgb(${28 + ease*5}, ${36 + ease*5}, ${46 + ease*5})`;
-  const right = `rgb(${rightBase}, ${rightBase+8}, ${rightBase+16})`;
+    // top: right side lighter
+    // bottom: left side becomes lighter
+    const leftBase = Math.round(18 + ease * 34);
+    const rightBase = Math.round(68 - ease * 32);
+    const midBase = Math.round(30 + ease * 3);
 
-  document.body.style.setProperty(
-    "background",
-    `linear-gradient(90deg, ${left} 0%, ${mid} 50%, ${right} 100%)`,
-    "important"
-  );
-});
+    document.body.style.setProperty("--grad-left", `rgb(${leftBase}, ${leftBase + 8}, ${leftBase + 16})`);
+    document.body.style.setProperty("--grad-mid", `rgb(${midBase}, ${midBase + 8}, ${midBase + 14})`);
+    document.body.style.setProperty("--grad-right", `rgb(${rightBase}, ${rightBase + 8}, ${rightBase + 16})`);
+  }
+
+  updateGradient();
+
+  window.addEventListener("scroll", updateGradient, { passive: true });
+  window.addEventListener("touchmove", updateGradient, { passive: true });
+  window.addEventListener("resize", updateGradient);
+  window.addEventListener("orientationchange", updateGradient);
+
+  setTimeout(updateGradient, 300);
+  setTimeout(updateGradient, 900);
+})();
 </script></body>
 </html>
